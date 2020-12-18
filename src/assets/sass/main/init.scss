@@ -1,0 +1,217 @@
+@charset "utf-8";
+
+// common
+@import "../parts/common";
+
+//page-main
+.contents {
+    .main-sec {
+        padding: 100px 0;
+        background: url(http://design.ebiznetworks.co.kr/lhc/resort_hotel_sell/img/main/main_bg.jpg) no-repeat center; background-size: cover;
+        .main-area {
+            @include centerThis;
+            height: 585px;
+            background: url(http://design.ebiznetworks.co.kr/lhc/resort_hotel_sell/img/main/login_bg.jpg) no-repeat center; background-size: 1000px auto;
+            
+            //세로정렬을 위한 기본 정의 css
+            .main-box {
+                position: absolute;
+                box-sizing: border-box;
+                width: 100%;
+                top: 50%; 
+                text-align: center;
+                margin-top: -0;
+            
+                //로그인 화면
+                &.login {
+                    padding: 0 62px;
+                    .form-area {
+                        padding-top: 46px;
+                        @include clearfix;
+                        text-align: left;
+                        .form-box {
+                            @include form-base;
+                            display: table-cell;
+                            width: 670px;
+                            padding-right: 24px;
+                        }
+                        .btn-login {
+                            @include btn-com($dis : table-cell, $wd : 180px, $he : 100%);
+                            vertical-align: middle;
+                            line-height: 24px;
+                        }
+                    }
+                    //회원가입 버튼
+                    .btn-sign {
+                        @include btn-com($wd : auto, $he : 36px, $pd : 0 5px, $f-s : 18px, $f-c : $fc-gray-6, $bd-c : $bc-gray-1, $bd-r : $bd-r-0, $btn-bg : $bg-white-1);
+                        border-bottom-width: 1px;
+                        margin: 70px auto 0;
+                        &.ic-rArrow {
+                            &:after {
+                                width: 8px;
+                                height: 8px;
+                                margin-left: 5px;
+                                right: 0px;
+                                border-color: $fc-gray-6;
+                            }
+                        }
+                        cursor: pointer;
+                    }
+                }
+
+                //로그인 성공 화면
+                &.login-cm {
+                    text-align: center;
+                    p {
+                        position: relative;
+                    }
+                    .p-1 {
+                        padding-bottom: 34px;
+                        font-size: 46px;
+                        font-weight: 400;
+                        line-height: 60px;
+                        letter-spacing: -2.2px;
+                        span {
+                            font-size: inherit;
+                            font-weight: inherit;
+                        }
+                        .cm-t-deco {
+                            font-size: inherit;
+                            font-weight: 600;
+                            //@include txt-gradient(#348483, #355f6b 10%, #41aab1 45%, #2d696c 100%);
+                            color: #376cbb;
+                        }
+                        
+                        &:before {
+                            content: '';
+                            display: block;
+                            position: absolute;
+                            bottom: 0;
+                            left: 50%;
+                            margin-left: -17px;
+                            width: 35px;
+                            height: 1px;
+                            background: $bg-gray-4;
+                        }
+                    }
+                    .p-2 {
+                        margin-top: 38px;
+                        font-size: 20px;
+                        line-height: 1.3;
+                        color: #292929;
+                        letter-spacing: -1px;
+
+                    }
+                    .btn-go-facility{
+                        display: flex;
+                        background-color: #d2a564;
+                        justify-content: center;
+                        align-items: center;
+                        
+                        width: 300px;
+                        height: 60px;
+                        border-radius: 5px;
+                        margin: 0 auto;
+                        margin-top: 45px;
+                        span{
+                            color: #fff;
+                            font-size: 22px;
+                            letter-spacing: 1;
+                            padding-bottom: 5px;
+                        }
+                    }
+
+                }
+            }
+        }
+    }
+}
+
+.overflow-hidden{
+    overflow: hidden;
+}
+
+/* 문의하기 팝업 */
+#pop_login.pop-wrap {
+    .pop-container {
+        margin: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        .pop-con {
+            width: 685px;
+            padding: 65px 64px 35px;
+            position: relative;
+            .p-0 {
+                padding-bottom: 43px;
+            }
+            .btn-close-question{
+                position: absolute;
+                top: -17px;
+                transform: translateY(-100%);
+                right: 0;
+                background: none;
+                border: none;
+                outline: none;
+                
+            }
+            
+            .table-row {
+                @include table-row($f-s : 13px, $td-f-s : 12px, $td-h : 30px, $td-pd : 8px 25px 8px 10px, $bt-w : 1px, $bt-c : $bc-gray-4, $w-th : 85px, $i-wd : 200px);
+                .table-style {
+                    tr {
+                        th {
+                            text-align: center;
+                        }
+                        td {
+                            .in-txt-2 {
+                                padding: 0 8px;
+                            }
+                            .ta-txt {
+                                height: 145px;
+                                padding: 12px 10px;
+                            }
+                        }
+                    }
+                }
+            }
+            
+            .btn-box {
+                margin-top: 30px;
+                .btn-send-question{
+                    width: 240px;
+                    height: 60px;
+                    border-radius: 5px;
+                    outline: none;
+                    border: none;
+                    background-color: #d2a564;
+                    color: #fff;
+                    font-size: 19.5px;
+                }
+            }
+        }
+    }
+}
+
+//ie 일때
+.ie .contents {
+    .con-sec {
+        .main-area {
+            
+            //세로정렬을 위한 기본 정의 css
+            .main-box {
+            
+                //로그인 성공 화면
+                .login-cm-box {
+                    .p-1 {
+                        .cm-t-deco {
+                            /*background: none;
+                            color: #348483;*/
+                        }
+                        
+                    }
+
+                }
+            }
+        }
+    }
+}

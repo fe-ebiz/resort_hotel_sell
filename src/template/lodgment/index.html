@@ -1,0 +1,183 @@
+@@include('../include/_head.html', {
+	"page": "lodgment"
+})
+</head>
+<body class="page-discount">
+
+<div class="wrapper">
+	@@include('../include/_header.html')
+
+	<div class="contents">
+        <div class="container">
+            <div class="visual-area">
+                <div class="visual-box">
+                    <div class="top-title"><img src="http://design.ebiznetworks.co.kr/lhc/resort_hotel_sell/img/lodgment/top_title.png" alt="탑이미지"></div>
+                </div>
+                <div class="visual-sub-box">
+                    <div class="img-box"><img src="http://design.ebiznetworks.co.kr/lhc/resort_hotel_sell/img/lodgment/visual_sub_vip.png" alt="이미지"></div>
+                </div> 
+            </div> 
+            <div class="con-area">
+                <div class="lodgment-area">
+                    <ul class="lodgment-ul">
+                        <!--견본 틀-->
+                        <li>
+                            <div class="title-box">
+                                <h4 class="title mark-best">오션투유리조트</h4>
+                                <div class="sub-box">
+                                    <p class="p-address">강원도 고성군 죽왕면</p>
+                                    <div class="lank-star">
+                                        <img src="http://design.ebiznetworks.co.kr/lhc/resort_hotel_sell/img/lodgment/lank_star_full.png" alt="랭크">
+                                        <img src="http://design.ebiznetworks.co.kr/lhc/resort_hotel_sell/img/lodgment/lank_star_full.png" alt="랭크">
+                                        <img src="http://design.ebiznetworks.co.kr/lhc/resort_hotel_sell/img/lodgment/lank_star_full.png" alt="랭크">
+                                        <img src="http://design.ebiznetworks.co.kr/lhc/resort_hotel_sell/img/lodgment/lank_star_full.png" alt="랭크">
+                                        <img src="http://design.ebiznetworks.co.kr/lhc/resort_hotel_sell/img/lodgment/lank_star_half.png" alt="랭크반">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="contents-area">
+                                <div class="img-box"><img src="http://design.ebiznetworks.co.kr/lhc/resort_hotel_sell/img/lodgment/lodgment01.jpg" alt="이미지"></div>
+                                <div class="type-box">
+                                    <p class="p-type">리조트<br>&콘도</p>
+                                </div>
+                                <div class="info-area">
+                                    <p class="p-txt">
+                                        천혜의 절경, 삼포해수욕장을 배경으로 청정 자연과 프라이빗<br>전용해변의 만남. 동해바다, 설악산 등 관광지 인접
+                                    </p>
+                                    <div class="reserve-box">
+                                        <p class="p-hesh">#삼포해변  #바닷가리조트  #설악산 인접</p>
+                                        <a href="#" class="btn-go-reserve">예약하기</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <!--견본 틀-->
+                    </ul>
+                </div>
+            </div>  
+        </div>
+    </div>
+    
+    <!--//.contents-->    
+    
+
+    <script>
+        $(document).ready(function(){
+            //기본 이미지 경로
+            let baseImgPath = "http://design.ebiznetworks.co.kr/lhc/resort_hotel_sell/img/lodgment/";
+
+            //틀
+            let lodgmentUl = $(".lodgment-area .lodgment-ul")
+            let lodgment = $(".lodgment-area .lodgment-ul>li:nth-of-type(1)")
+            //리스트 견본 생성
+            let lodgmentFrame = lodgment.clone().wrap("<div/>").parent();
+            //틀 삭제
+            lodgment.remove();
+
+            //리스트 붙이기
+            $.each(lodgmentInfo,function(index, item){
+                let newLodment = lodgmentFrame.clone();
+                let title = newLodment.find(".title-box .title");
+                let lank = newLodment.find(".sub-box .lank-star");
+
+                //추천 여부
+                if(item.best == false){
+                    title.removeClass("mark-best")
+                }
+                //별 점수
+                let lankNum = item.lank;
+                let lankInt = parseInt(lankNum);
+                let lankFloat = lankNum % 1;
+                
+                if(lankNum > 5){lankInt = 5; lankFloat = 0;}
+
+                lank.empty();
+                for (let i = 0; i < lankInt; i++) {
+                    lank.append("<img src='"+ baseImgPath +"lank_star_full.png"+ "' alt='랭크'>");
+                }
+                if(lankFloat != 0){
+                    lank.append("<img src='"+ baseImgPath +"lank_star_half.png"+ "' alt='랭크'>");
+                }
+
+                //제목
+                title.html(item.title);
+                
+                //주소
+                newLodment.find(".sub-box .p-address").html(item.address);
+                
+                //타입
+                newLodment.find(".type-box .p-type").html(item.type);
+
+                //헤시
+                newLodment.find(".info-area .p-hesh").html(item.hesh);
+
+                //내용
+                newLodment.find(".info-area .p-txt").html(item.text);
+
+                //이미지
+                newLodment.find(".contents-area .img-box>img").attr("src",baseImgPath+item.img);
+
+                //페이지경로()
+                newLodment.find(".info-area .btn-go-reserve").attr("href",item.href);
+                
+                //리스트 추가
+                lodgmentUl.append(newLodment.html());
+            });
+        });
+
+        //리스트 정보
+        let lodgmentInfo = [
+            {
+                best:true,
+                lank:4.5,
+                title:"오션투유리조트",
+                address:"강원도 고성군 죽왕면",
+                type:"리조트<br>&콘도",
+                img:"lodgment01.jpg",
+                hesh:"#삼포해변  #바닷가리조트  #설악산 인접",
+                text:"천혜의 절경, 삼포해수욕장을 배경으로 청정  자연과 프라이빗<br>전용해변의 만남. 동해바다, 설악산 등 관광지 인접",
+                href:"../reserve/index.html"
+            },
+            {
+                best:false,
+                lank:4.5,
+                title:"에어스카이호텔",
+                address:"인천광역시 중구 중산동",
+                type:"호텔",
+                img:"lodgment02.jpg",
+                hesh:"#인천 영종도  #월미도 유원지  #차이나타운",
+                text:"서해의 일출과 석양, 싱그러움 가득한 초록공원, 푸른 인천 바다가<br>맞닿은 인천 영종도에 위치한 특급호텔.",
+                href:"#none"
+            },
+            {
+                best:false,
+                lank:4.5,
+                title:"정선인투라온",
+                address:"강원도 정선군 사북면",
+                type:"호텔",
+                img:"lodgment03.jpg",
+                hesh:"#강원랜드 카지노  #워터월드  #하이원스키장",
+                text:"강원 내륙의 수려한 자연 경관을 품고 있는 정선인투라온. 멋과<br>흥, 대자연의 풍요로움이 살아있는 특급호텔 ",
+                href:"#none"
+            },
+            {
+                best:false,
+                lank:4.5,
+                title:"강르씨베이호텔",
+                address:"강원도 강릉시 주문진읍",
+                type:"호텔",
+                img:"lodgment04.jpg",
+                hesh:"#인천 영종도  #월미도 유원지  #차이나타운",
+                text:"호텔 바로 앞 파노라마처럼 펼쳐진 동해 푸른바다와 커피 그리고<br>해돋이의 명소로 유명한 주문진 해변가에 인접한 호텔",
+                href:"#none"
+            }
+        ]
+
+    </script>
+
+
+	@@include('../include/_footer.html') 
+</div>
+
+</body>
+</html>

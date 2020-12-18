@@ -1,0 +1,22 @@
+@charset "utf-8";
+
+// common
+@import "../parts/common";
+
+//page-board
+.contents {
+    .container {
+        padding: 50px 0 80px;
+        @include tab-base;
+        section{
+            text-align: center;
+            .sect-contents{
+                margin-top: 50px;
+                // margin: 0 auto;
+                // max-width: 1000px;
+
+            }
+        }
+    }
+    
+}

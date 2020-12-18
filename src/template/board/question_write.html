@@ -1,0 +1,71 @@
+@@include('../include/_head.html', {
+	"page": "board"
+})
+	
+</head>
+<body class="page-board">
+
+<div class="wrapper">
+	@@include('../include/_header.html')
+
+	<div class="contents">
+        <div class="container">
+            <!-- tab -->
+            <div class="tab-area">
+                <ul class="tab-menu">
+                    <li class="tab-1"><a href="./index.html">공지사항</a></li>
+                    <li class="tab-2"><a href="./index_2.html">FAQ</a></li>
+                    <li class="tab-3 on"><a href="./index_3.html">문의하기</a></li>
+                </ul>
+            </div>
+            
+            <!-- 문의사항 / 글쓰기 -->
+            <section id="tabSec-3" class="board-sec qna-sec" style="display: block">
+                <h2 class="con-tit">문의하기</h2> 
+                <!-- sub content -->
+                <div class="con-area">
+                    <div class="table-row write">
+                        <table class="table-style">
+                            <colgroup>
+                                <col class="nth-1">
+                                <col class="nth-2">
+                            </colgroup>
+                            <tbody>
+                                <tr>
+                                    <th><label for="wName" class="lbl">작성자명</label></th>
+                                    <td>
+                                        <input type="text" id="wName" class="in-txt-2" value="홍길동">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th><label for="wTit" class="lbl">제목</label></th>
+                                    <td>
+                                        <input type="text" id="wTit" class="in-txt-2" placeholder="제목입력">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th><label for="wTxt" class="lbl">내용</label></th>
+                                    <td>
+                                        <textarea id="wTxt" class="ta-txt">내용입력 내용입력</textarea>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="btn-box">
+                        <a href="#none" class="btn-list left">목록</a>
+                        <a href="#none" class="btn-com right">완료</a>
+                    </div>
+                    
+                </div>
+            </section>
+        </div>
+	</div>
+	<!--//.contents-->    
+
+	@@include('../include/_footer.html') 
+</div>
+
+</body>
+</html>

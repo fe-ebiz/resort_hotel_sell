@@ -1,0 +1,520 @@
+@charset "utf-8";
+
+// common
+@import "../parts/common";
+
+//page-board
+.contents {
+    .container {
+        padding: 50px 0 80px;
+        @include tab-base;
+        
+        /* sub content */
+        .board-sec {
+            .con-area {
+                margin-top: 45px;
+                //search
+                .search-area {
+                    position: relative;
+                    @include clearfix;
+                    .written-amount{
+                        position: absolute;
+                        bottom: 0;
+                        font-size: 18px;
+                        .span-num{
+                            color: #d22b2b;
+                        }
+                    }
+                    .search-box {
+                        @include bx;
+                        float: right;
+                        
+                        %f-style {
+                            @include bx;
+                            font-size: 15px;
+                        }
+                        
+                        .sel-search {
+                            @include sel-ser;
+                        }
+                        .in-search {
+                            display: inline-block;
+                            width: 180px;
+                            height: 36px;
+                            margin: 0 7px;
+                            padding: 0 11px;
+                            border: 1px solid $bc-gray-2;
+                        }
+                        .btn-search {
+                            @include btn-com($wd : 80px, $he :36px, $f-s : 15px, $bd-r : $bd-r-0, $btn-bg : $bg-black-1);
+                        }
+                    }
+                }
+                
+                //table col
+                .table-col {
+                    @include table-col;
+                    margin-top: 20px;
+                    colgroup {
+                        col {
+                            &.nth-1 {
+                                width: 8%;
+                            }
+                            &.nth-2 {
+                                width: 61%;
+                            }
+                            &.nth-3 {
+                                width: 10%;
+                            }
+                        }
+                    }
+                    
+                    > * {
+                        word-break: break-word;
+                    }
+                    
+                    //공지사항 자세히보기
+                    &.read {
+                        colgroup {
+                            col {
+                                // &.nth-1 {
+                                //     width: 70%;
+                                // }
+                                // &.nth-2 {
+                                //     width: 15%;
+                                // }
+                                // &.nth-3 {
+                                //     width: 15%;
+                                // }
+                            }
+                        }
+                        thead {
+                            tr {
+                                th {
+                                    &.tit {
+                                        padding: 35px 25px; 
+                                        text-align: left;
+                                        background-color: #fff;
+                                        line-height: 1;
+                                        .p-title{
+                                            
+                                            color: #292929;
+                                            font-size: 22px;
+                                            letter-spacing: -1px;
+                                        }
+                                        .p-date{
+                                            color: #555;
+                                            font-size: 16px;
+                                            margin-top: 16px;
+                                            font-weight: 300;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        tbody {
+                            tr {
+                                td {
+                                    padding: 50px 25px;
+                                    text-align: left;
+                                    line-height: 22px;
+                                    &.t-down {
+                                        padding: 10px 25px 6px;
+                                        font-size: 16px;
+                                        p {
+                                            .btn-down {
+                                                display: inline-block;
+                                                padding-left: 40px;
+                                                background: url(http://img.ramadapt.co.kr/owner/board/ico_down.png) no-repeat 0 center; 
+                                                background-size: 18px auto;
+                                                span {
+                                                    display: inline-block;
+                                                    margin-right: 5px;
+                                                }
+                                            }
+                                            & + p {
+                                                margin-top: 7px;
+                                            }
+                                        }
+                                    }
+                                    .t-txt {
+                                        box-sizing: border-box;
+                                        // min-height: 220px;
+                                        
+                                        color: #555;
+                                        font-size: 16px;
+                                        font-weight: 300;
+                                        letter-spacing: -0.8px;
+                                        line-height: 1.6;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                
+                //table row
+                .table-row {
+                    @include table-row;
+                    border-bottom: 1px solid $bc-gray-4;
+                    > * {
+                        word-break: break-word;
+                    }
+                    tr {
+                        th {
+                            text-align: center;
+                        }
+                    }
+                }
+                
+                @include board-num;
+                
+                //목록, 완료 버튼
+                .btn-box {
+                    
+                    margin-top: 40px;
+                    .btn-com {
+                        @include btn-com($wd : 120px, $he : 42px, $f-s : 16px);
+                    }
+                    .btn-list {
+                        @include btn-com($wd : 120px, $he : 42px, $f-s : 16px, $f-c : $fc-gray-6, $bd-w : 1px, $bd-c : $bc-gray-5, $btn-bg : $bg-white-1);
+                    }
+                    .btn-go-list{
+                        margin: 0 auto;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        width: 100px;
+                        height: 48px;
+                        border: 1px solid #bcbcbc;
+                        border-radius: 5px;
+                        color: #292929;
+                        font-size: 18px;
+                    }
+                }
+            }
+        }
+        
+        /* FAQ */
+        .board-sec.faq-sec {
+            .con-area {
+                //table
+                .table-col {
+                    colgroup {
+                        col {
+                            &.nth-1 {
+                                width: 8%;
+                            }
+                            &.nth-2 {
+                                width: 84%;
+                            }
+                            &.nth-3 {
+                                width: 8%;
+                            }
+                        }
+                    }
+                    
+                    tbody {
+                        tr {
+                            //faq 답변
+                            &.answer {
+                                display: none;
+                                background-color: #f9f9f9;
+                                td {
+                                    position: relative;
+                                    vertical-align: top;
+                                    &.ico-answer {
+                                        img{
+                                            margin-top: 30px;
+                                        }
+                                    }
+                                    &.t-l > p {
+                                        min-height: 115px;
+                                    }
+                                    
+                                }
+                                .t-txt{
+                                    p{
+                                        color: #555;
+                                        font-size: 16px;
+                                        line-height: 1.6;
+                                        text-align: left;
+                                        padding-top: 30px;
+                                        padding-bottom: 40px;
+                                    }
+                                }
+                            
+                            }
+                        }
+                        .t-icon-arrow{
+                            .icon-arrow{
+                                transform: scaleY(0.6);
+                                color: #555;
+                                font-size: 14px;
+                            }
+                            .icon-arrow-up{
+                                display: none;
+                            }
+                        }
+                    }
+
+                    .table-over-faq{
+                        tr{
+                            &:nth-of-type(odd){
+                                &:hover{
+                                    background-color: #fff4f1
+                                }
+                            }
+
+                            
+                        }
+                        .tr-active{
+                            background-color: #fff4f1
+                        }
+                    }
+                    
+                }
+                
+                
+            }
+        }
+        
+        /* 문의사항 */
+        .qna-sec {
+            .con-area {
+                
+                
+                .table-col {
+                    /* 문의접수. 답변완료 */
+                    colgroup {
+                        col {
+                            &.nth-1 {
+                                width: 8%;
+                            }
+                            &.nth-2 {
+                                width: 62%;
+                            }
+                            &.nth-3 {
+                                width: 20%;
+                            }
+                            &.nth-4 {
+                                width: 10%;
+                            }
+                        }
+                    }
+                    &.read {
+                        tr {
+                            td {
+                                .t-txt {
+                                    // min-height: 180px;
+                                }
+                                
+                            }
+                            //문의사항 공지
+                            &.answer {
+                                background-color: #f9f9f9;
+                                td {
+                                    .answer-box{
+                                        display: flex;
+                                        .t-txt{
+                                            margin-left: 30px;
+                                        }
+                                    }
+                                    
+                                }
+                            }
+                        }
+                    }
+                }
+                
+                .write{
+                    colgroup{
+                        col {
+                            &.nth-1 {
+                                width: 14%;
+                            }
+                            &.nth-2 {
+                                width: 84%;
+                            }
+                        }
+                    }
+
+                    .table-style{
+                        border-collapse: separate;
+                        // padding-top: 30px;
+                        // padding-bottom: 30px;
+                        tbody{
+                            padding-top: 50px;
+                        }
+                        tr{
+                            border: none;
+                            &:first-of-type td{
+                                padding-top: 30px;
+                            }
+                            &:last-of-type td{
+                                padding-bottom: 30px;
+                            }
+                            // border-collapse: collapse;
+                            td{
+                                // border-collapse: collapse;
+                                // border: 2px solid #ff00ff;
+                                padding-left: 30px;
+                                
+                                label{
+                                    padding-left: 12px;
+                                    position: relative;
+                                    &::before{
+                                        content: "";
+                                        // width: ;
+                                        width: 5px;
+                                        height: 5px;
+                                        position: absolute;
+                                        background-color: #d2a564;
+                                        border-radius: 50%;
+                                        top: 50%;
+                                        left: 0;
+                                        transform: translateY(-50%);
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    .label-txt{
+                        
+                    }
+
+                    .tr-txt-box{
+                        vertical-align: top;
+                    }
+
+                    .in-name{
+                        box-sizing: border-box;
+                        padding-left: 20px;
+                        width: 400px;
+                        height: 42px;
+                        background-color: #f4f4f4;
+                        color: #353535;
+                        font-size: 18px;
+                        font-weight: 400;
+                        letter-spacing: -0.8px;
+                    }
+
+                    .in-title{
+                        box-sizing: border-box;
+                        padding-left: 20px;
+                        width: 97%;
+                        height: 42px;
+                        background-color: #f4f4f4;
+                        color: #353535;
+                        font-size: 18px;
+                        font-weight: 400;
+                        letter-spacing: -0.8px;
+                    }
+
+                    .txt-area{
+                        resize: none;
+                        width: 97%;
+                        height: 300px;
+                        background-color: #f4f4f4;
+                        color: #909090;
+                        font-size: 18px;
+                        font-weight: 400;
+                        letter-spacing: -0.8px;
+                        border: none;
+                        // outline: none;
+                        box-sizing: border-box;
+                        padding-top: 15px;
+                        padding-left: 20px;
+                    }
+
+                }
+
+                .btn-write-box{
+                    margin-top: 40px;
+                    position: relative;
+                    .btn-go-list{
+                        position: absolute;
+                        left: 0;
+                        width: 100px;
+                        height: 48px;
+                        border: 1px solid #bcbcbc;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        border-radius: 5px;
+                        color: #292929;
+                        font-size: 18px;
+                    }
+                    .btn-complete{
+                        width: 150px;
+                        height: 48px;
+                        margin: 0 auto;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        background-color: #d2a564;
+                        border-radius: 5px;
+                        color: #fff;
+                        font-size: 18px;
+
+                    }
+                }
+                
+
+
+                .box-white{
+                    display: flex;
+                    width: 65px;
+                    height: 30px;
+                    background-color: #f8f8f8;
+                    justify-content: center;
+                    align-items: center;
+                    color: #292929;
+                    font-size: 14px;
+                    letter-spacing: -1px;
+                    box-sizing: border-box;
+                    border: 1px solid #bcbcbc;
+                }
+                .box-black{
+                    display: flex;
+                    width: 65px;
+                    height: 30px;
+                    background-color: #353535;
+                    justify-content: center;
+                    align-items: center;
+                    color: white;
+                    font-size: 14px;
+                    letter-spacing: -1px;
+                }
+                
+                // 글쓰기 버튼
+                .btn-write {
+                    margin-top: 30px;
+                    margin-left: auto;
+                    
+                    background-color: #d2a564;
+                    display: flex;
+                    width: 100px;
+                    height: 40px;
+                    justify-content: center;
+                    align-items: center;
+                    justify-content: center;
+                    border-radius: 5px;
+                    color: #fff;
+                    font-size: 18px;
+                    line-height: 18;
+                    
+                }
+                .pagenation {
+                    @include clearfix;
+                    margin-top: 60px;
+                }
+            }
+        }
+
+
+        
+    }
+    
+}

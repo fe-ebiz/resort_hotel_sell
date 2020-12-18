@@ -1,0 +1,71 @@
+@charset "utf-8";
+// --------------
+// Scss변수
+// --------------
+//$font-stack: "Nanum Gothic", Dotum, Sans-serif;
+$font-ntss: "Noto Sans KR", Sans-serif;
+
+/* border-radius */
+//버튼 라운드
+$bd-r-0 : 0px;
+$bd-r-5 : 5px;
+$bd-r-10 : 10px;
+
+/* bg color */
+$bg-gold-1: #c49457;
+
+$bg-black-1: #353535;
+$bg-black-2: #292929;
+
+$bg-gray-1: #8a8a8a;
+$bg-gray-2: #f4f4f4; //input bg color
+$bg-gray-3: #f8f8f8;
+$bg-gray-4: #545454;
+$bg-gray-5: #ccc;
+$bg-gray-6: #4d4d4d;
+
+$bg-yellow-1: #f9efe2; //input focus bg color
+$bg-yellow-2: #fffac6; //table bg
+$bg-yellow-3: #fde7c8;
+
+$bg-white-1: #fff;
+
+$bg-red-1: #810000; //메뉴 bg
+$bg-red-2 : #ffecf0; //table bg
+
+/* border color */
+$bc-gray-1: #bcbcbc;
+$bc-gray-2: #d7d6d6;
+$bc-gray-3: #dfdede;
+$bc-gray-4: #d9d9d9;
+$bc-gray-5: #717171; //btn 1
+$bc-gray-6: #c9c9c9; 
+$bc-gray-7: #e4e4e4; 
+$bc-gray-8: #676666; 
+
+$bc-black-1: #353535;
+
+$bc-gold-1: #d2a564;
+
+$bc-red-1: #cc9595;
+
+/* font color */
+$fc-black-1: #292929; //font basic color
+$fc-black-2: #353535;
+
+$fc-gray-1: #8a8a8a; //until basic
+$fc-gray-2: #909090; //input txt color
+$fc-gray-3: #676666;
+$fc-gray-4: #a3a3a3;
+$fc-gray-5: #b0b0b0;
+$fc-gray-6: #666565; //btn 1
+
+$fc-red-1: #810000; //강조
+$fc-red-2: #ff0000; //레드
+$fc-red-3: #9a3232; //메뉴
+$fc-red-4: #f73434; //회원가입
+
+$fc-white-1: #fff;
+$fc-brown-1: #5d4c3f;
+
+

@@ -1,0 +1,104 @@
+@@include('../include/_head.html', {
+	"page": "mypage"
+})
+</head>
+<body class="page-discount">
+
+<div class="wrapper">
+    @@include('../include/_header.html')
+    <div class="contents">
+        <div class="container">
+            <div class="con-area">
+                <div class="mypage-area">
+                    <h2 class="con-tit">마이페이지</h2>
+                    <div class="info-base">
+                        <table class="mypage-table">
+                            <tbody>
+                                <tr>
+                                    <td>가입일자</td>
+                                    <td>2020년 12월 02일</td>
+                                    <td>보유할인숙박권</td>
+                                    <td>
+                                        <div class="table-btn-box">
+                                            <p>12매</p>
+                                            <a href="../confirm/reservation.html" class="table-btn btn-hitory">이용내역 확인</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>멤버쉽 카드</td>
+                                    <td>
+                                        <div class="table-btn-box">
+                                            <p>발급</p>
+                                            <!--버튼 주석(임시)-->
+                                            <!-- <button type="button" class="table-btn btn-reissuance">재발급 신청</button> -->
+                                        </div>
+                                    </td>
+                                    <td>할인숙박권 유효기간</td>
+                                    <td>2020년 12월 02일</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!--회원정보-->
+                    <div class="info-member">
+                        <div class="table-title">회원정보</div>
+                        <table  class="mypage-table">
+                            <tbody>
+                                <tr>
+                                    <td>이름</td>
+                                    <td>고길동</td>
+                                    <td>생년월일</td>
+                                    <td>1981년 3월 22일</td>
+                                </tr>
+                                <tr>
+                                    <td>휴대폰</td>
+                                    <td>010-5555-6666</td>
+                                    <td>이메일 주소</td>
+                                    <td>test@naver.com</td>
+                                </tr>
+                                <tr>
+                                    <td>주소</td>
+                                    <td colspan="3"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!--가족정보-->
+                    <div class="info-family">
+                        <div class="table-title">가족정보</div>
+                        <table class="mypage-table">
+                            <tbody>
+                                <tr>
+                                    <td>이름</td>
+                                    <td>고길동</td>
+                                    <td>생년월일</td>
+                                    <td>1981년 3월 22일</td>
+                                </tr>
+                                <tr>
+                                    <td>휴대폰</td>
+                                    <td>010-5555-6666</td>
+                                    <td>이메일 주소</td>
+                                    <td>test@naver.com</td>
+                                </tr>
+                                <tr>
+                                    <td>주소</td>
+                                    <td colspan="3"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+
+                    <div class="btn-go-box"><a href="./modify.html" class="btn-go-modify">정보수정</a></div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+	@@include('../include/_footer.html') 
+</div>
+
+</body>
+</html>

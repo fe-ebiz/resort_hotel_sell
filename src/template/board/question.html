@@ -1,0 +1,71 @@
+@@include('../include/_head.html', {
+	"page": "board"
+})
+	
+</head>
+<body class="page-board">
+
+<div class="wrapper">
+	@@include('../include/_header.html')
+
+	<div class="contents">
+        <div class="container">
+            <!-- tab -->
+            <div class="tab-area">
+                <ul class="tab-menu">
+                    <li class="tab-1"><a href="./notice.html">공지사항</a></li>
+                    <li class="tab-2"><a href="./faq.html">FAQ</a></li>
+                    <li class="tab-3 on"><a href="./question.html">문의하기</a></li>
+                </ul>
+            </div>
+                
+            <!-- 문의사항 -->
+            <section id="tabSec-3" class="board-sec qna-sec" style="display: block">
+                <h2 class="con-tit">문의하기</h2> 
+                <!-- sub content -->
+                <div class="con-area">
+                    
+                    <div class="table-col">
+                        <table class="table-style">
+                            <colgroup>
+                                <col class="nth-1">
+                                <col class="nth-2">
+                                <col class="nth-3">
+                                <col class="nth-4">
+                            </colgroup>
+                            <tbody class="table-over">
+                                <tr>
+                                    <td class="t-num">2</td>
+                                    <td class="t-name"><a href="./question_read.html" title="상세보기">확정 수익금 및 이자지원금 관련 접수중</a></td>
+                                    <td class="t-date">작성일: 2019-02-01</td>
+                                    <td><div class="box-black">답변완료</div></td>
+                                </tr>
+                                <tr>
+                                    <td class="t-num">1</td>
+                                    <td class="t-name"><a href="#none" title="상세보기">확정 수익금 및 이자지원금 관련 업무절차</a></td>
+                                    <td class="t-date">작성일: 2019-02-01</td>
+                                    <td><div class="box-white">접수</div></td>
+                                    
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <a href="./index_3_write.html" class="btn-write">문의하기</a>
+                    
+                    <div class="pagenation" id="pagenation">
+                        <a class="prev" href="">&lt;</a>
+                        <a class="on" href="">1</a>
+                        <a class="next" href="">&gt;</a>
+                    </div>
+                </div>
+            </section>
+        </div>
+	</div>
+	<!--//.contents-->    
+
+	@@include('../include/_footer.html') 
+</div>
+
+</body>
+</html>

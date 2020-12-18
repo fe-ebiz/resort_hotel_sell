@@ -1,0 +1,508 @@
+@charset 'UTF-8';
+
+body {
+    font-size: 13px;
+    font-family: 'Nanum Gothic', 'Malgun Gothic', '맑은고딕', Dotum, "돋움", Arial, Helvetica, sans-serif;
+    line-height: 1.6em;
+    letter-spacing: -0.5px;
+    color: #6d6d6d;
+    min-width: 1480px;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+.blind {
+    overflow: hidden;
+    display: block;
+    text-indent: -9999px;
+    zoom: 1;
+}
+
+.hide {
+    visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1px;
+    height: 1px;
+    font-size: 0;
+    line-height: 0;
+}
+
+a {
+    text-decoration: none;
+    color: #5d5d5d;
+    outline: none !important;
+}
+
+a:hover,
+a:focus,
+a:active {
+    text-decoration: underline;
+}
+
+.img {
+    padding: 0;
+    margin: 0;
+    vertical-align: middle;
+    position: relative;
+    top: -1px;
+    *overflow: hidden;
+}
+
+strong {
+    font-weight: bold;
+}
+
+.tdn:active,
+.tdn:hover,
+.tdn:focus {
+    text-decoration: none !important;
+}
+
+.cblue {
+    color: #164984
+}
+
+.cgreen {
+    color: #286f91
+}
+
+.cred {
+    color: #c51b1b !important;
+}
+
+.cyellow {
+    color: #ffba00 !important;
+}
+
+.cyellow {
+    color: #ffba00 !important;
+}
+
+.c-yellow {
+    color: yellow !important;
+}
+
+a:hover,
+a:active,
+a:focus {
+    text-decoration: none;
+}
+
+.sm_text {
+    color: #8d8d8d;
+    font-size: 12px;
+}
+
+.tb_title {
+    color: #272d34;
+    font-size: 16px;
+    font-weight: bold
+}
+
+/* a태그 아이콘 X버튼*/
+.a-i-x,
+.a-i-x2 {
+    position: absolute;
+    display: block;
+    width: 20px;
+    height: 20px;
+    top: 10px;
+    right: 10px;
+}
+
+.a-i-x:before,
+.a-i-x:after,
+.a-i-x2:before,
+.a-i-x2:after {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    width: 1px;
+    height: 20px;
+    background: #555;
+}
+
+.a-i-x2:before,
+.a-i-x2:after {
+    width: 20px;
+    height: 1px;
+}
+
+.a-i-x:before,
+.a-i-2:before {
+    -webkit-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+
+.a-i-x:after,
+.a-i-x2:after {
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+/* rArrow, lArrow 버튼 */
+.ic-lArrow:after,
+.ic-rArrow:after,
+.ic-bArrow:after {
+    position: relative;
+    top: -2px;
+    content: "";
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    border: 1px solid #898989;
+    -webkit-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+
+.ic-lArrow:after {
+    border-right: 0;
+    border-bottom: 0;
+    left: 2px;
+}
+
+.ic-rArrow:after {
+    border-top: 0;
+    border-left: 0;
+    right: 2px;
+}
+
+.ic-bArrow:after {
+    border-top: 0;
+    border-right: 0;
+    top: 2px;
+    width: 8px;
+    height: 8px;
+}
+
+.ie8 .ic-lArrow:after,
+.ie8 .ic-rArrow:after {
+    width: auto;
+    height: auto;
+    border: 0;
+    left: 0;
+    right: 0;
+}
+
+.ie8 .ic-lArrow:after {
+    content: "◀";
+}
+
+.ie8 .ic-rArrow:after {
+    content: "▶";
+}
+
+.ie8 .ic-bArrow:after {
+    content: "▼";
+}
+
+/* ----------------------------------------------------------------
+ bxSlider Classes
+ ----------------------------------------------------------------*/
+.bx-wrapper .bx-controls-direction a {
+    z-index: 100 !important;
+}
+
+/* ----------------------------------------------------------------
+ Helper Classes
+ -----------------------------------------------------------------*/
+.fl {
+    float: left !important;
+}
+
+.fr {
+    float: right !important;
+}
+
+.tl {
+    text-align: left !important;
+}
+
+.tr {
+    text-align: right !important;
+}
+
+.tc {
+    text-align: center !important;
+}
+
+.clearFix {
+    clear: both;
+}
+
+.group:before,
+.group:after {
+    content: "";
+    display: table;
+}
+
+.group:after {
+    clear: both;
+}
+
+.group {
+    zoom: 1;
+}
+
+.centerThis {
+    width: 1000px;
+    margin: 0 auto;
+    position: relative;
+    display: block;
+}
+
+.hand {
+    cursor: hand;
+    cursor: pointer;
+}
+
+.mgt5 {
+    margin-top: 5px !important;
+}
+
+.mgt10 {
+    margin-top: 10px !important;
+}
+
+.mgt15 {
+    margin-top: 15px !important;
+}
+
+.mgt20 {
+    margin-top: 20px !important;
+}
+
+.mgt30 {
+    margin-top: 30px !important;
+}
+
+.mgt40 {
+    margin-top: 40px !important;
+}
+
+.mgt50 {
+    margin-top: 50px !important;
+}
+
+.mgt60 {
+    margin-top: 60px !important;
+}
+
+.mgt80 {
+    margin-top: 80px !important;
+}
+
+.mgb20 {
+    margin-bottom: 20px !important;
+}
+
+.lh12 {
+    line-height: 1.2em !important;
+}
+
+.lh13 {
+    line-height: 1.3em !important;
+}
+
+.lh14 {
+    line-height: 1.4em !important;
+}
+
+.lh15 {
+    line-height: 1.5em !important;
+}
+
+.lh16 {
+    line-height: 1.6em !important;
+}
+
+.lh17 {
+    line-height: 1.7em !important;
+}
+
+.lh18 {
+    line-height: 1.8em !important;
+}
+
+.lh19 {
+    line-height: 1.9em !important;
+}
+
+.lh20 {
+    line-height: 2.0em !important;
+}
+
+input,
+select,
+textarea {
+    // font-family: 'Nanum Gothic', 'Malgun Gothic', '맑은고딕', Dotum, "돋움", Arial, Helvetica, sans-serif;
+    font-family: "Noto Sans KR",Sans-serif;
+}
+
+input {
+    padding: 0;
+    margin: 0;
+    vertical-align: middle;
+    *overflow: hidden;
+}
+
+input[type="checkbox"] {
+    width: 15px;
+    height: 15px;
+    padding: 0;
+    margin: 0;
+    vertical-align: middle;
+    position: relative;
+    top: -1px;
+    *overflow: hidden;
+    border: 0px;
+    border: 1px solid #dedede;
+}
+
+input[type="radio"] {
+    width: 15px;
+    height: 15px;
+    padding: 0;
+    margin: 0;
+    vertical-align: middle;
+    position: relative;
+    top: -1px;
+    *overflow: hidden;
+    border: 0px;
+    border: 1px solid #dedede;
+}
+
+.input_type01 {
+    padding: 5px 8px;
+    height: 20px;
+    line-height: 20px;
+    color: #6d6d6d;
+    font-weight: bold;
+    border: 1px solid #dedede;
+    background: #fafafa;
+    display: inline-block;
+}
+
+.sel_type01 {
+    color: #6d6d6d;
+    font-weight: bold;
+    vertical-align: middle;
+    border: 1px solid #dedede;
+    background: #fafafa;
+    display: inline-block;
+    padding: 5px;
+    width: 100px;
+    height: auto;
+    border-radius: 0px;
+}
+
+.label_span span {
+    margin-right: 5px;
+}
+
+.text-max {
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-align: left;
+    width: 400px;
+}
+
+.layer-pop-bg {
+    position: fixed;
+    z-index: 200;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url(http://img.go.co.kr/black_rgba58.png) repeat;
+}
+
+/* ----------------------------------------------------------------
+ button
+ -----------------------------------------------------------------*/
+.sm_btn,
+.md_btn,
+.big_btn {
+    position: relative;
+    display: inline-block;
+    margin: 0;
+    border: 0;
+    border-radius: 0;
+    vertical-align: middle;
+    text-align: center;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.big_btn {
+    height: 40px;
+    line-height: 40px;
+    margin: 0;
+    padding: 0px 30px;
+    color: #ffffff;
+    background: #c51b1b;
+    font-size: 14px;
+    min-width: 40px;
+    border-radius: 3px 3px 3px 3px;
+    -moz-border-radius: 3px 3px 3px 3px;
+    -webkit-border-radius: 3px 3px 3px 3px;
+}
+
+.md_btn {
+    height: 32px;
+    line-height: 32px;
+    margin: 0;
+    padding: 0px 10px;
+    color: #ffffff;
+    background: #c51b1b;
+    font-size: 14px;
+    min-width: 40px;
+    border-radius: 3px 3px 3px 3px;
+    -moz-border-radius: 3px 3px 3px 3px;
+    -webkit-border-radius: 3px 3px 3px 3px;
+}
+
+.sm_btn:hover,
+.sm_btn:focus,
+.sm_btn:active,
+.md_btn:hover,
+.md_btn:focus,
+.md_btn:active,
+.big_btn:hover,
+.big_btn:focus,
+.big_btn:active {
+    text-decoration: none;
+    opacity: 0.9;
+}
+
+.btn_gray {
+    background: #adadad;
+}
+
+.btn_area {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.btn_area span {
+    padding: 0px 3px;
+}

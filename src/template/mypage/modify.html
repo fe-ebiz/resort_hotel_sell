@@ -1,0 +1,118 @@
+@@include('../include/_head.html', {
+	"page": "mypage"
+})
+</head>
+<body class="page-discount">
+
+<div class="wrapper">
+    @@include('../include/_header.html')
+    <div class="contents">
+        <div class="container">
+            <div class="con-area">
+                <div class="modify-area">
+                    <h2 class="con-tit">회원정보 수정</h2>
+                    <div class="info-area info-member">
+                        <p class="info-title">01 회원정보</p>
+                        <form class="info-contents">
+                            <ul class="info-ul">
+                                <li>
+                                    <h4><span>회원이름</span></h4>
+                                    <div class="contents-box cont-name">고길동</div>
+                                </li>
+                                <li>
+                                    <h4><span>생년월일</span></h4>
+                                    <div class="contents-box cont-date">1981년 03월 22일</div>
+                                </li>
+                                <li>
+                                    <h4><span>휴대폰</span></h4>
+                                    <div class="contents-box cont-phon">
+                                        <div class="phon-box">
+                                            <input type="number" class="in-phon" placeholder="휴대폰 번로를 입력해주세요.(-없이)">
+                                            <button type="button" class="sty-btn-black btn-search">휴대폰 인증</button>
+                                        </div>
+                                        <p>※ <span class="sty-color-red">회원 본인명의 휴대폰번호</span>만 등록이 가능합니다.</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <h4><span>이메일</span></h4>
+                                    <div class="contents-box cont-email">
+                                        <input type="text" class="in-email">
+                                    </div>
+                                </li>
+                                <li>
+                                    <h4><span>주소</span></h4>
+                                    <div class="contents-box cont-address">
+                                        <div class="phon-box">
+                                            <input type="number" class="in-zipcode" placeholder="우편번호">
+                                            <button type="button" class="sty-btn-black">우편번호 찾기</button>
+                                        </div>
+                                        <div>
+                                            <input type="text" class="in-adress" placeholder="상세주소를 입력해주세요.">
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </form>
+                    </div>
+                    <div class="info-area info-family">
+                        <p class="info-title">02 가족정보</p>
+                        <form class="info-contents">
+                            <ul class="info-ul">
+                                <li>
+                                    <h4><span>회원이름</span></h4>
+                                    <div class="contents-box cont-name">박정자</div>
+                                </li>
+                                <li>
+                                    <h4><span>생년월일</span></h4>
+                                    <div class="contents-box cont-date">1981년 03월 22일</div>
+                                </li>
+                                <li>
+                                    <h4><span>휴대폰</span></h4>
+                                    <div class="contents-box cont-phon">
+                                        <div class="phon-box">
+                                            <input type="number" class="in-phon" placeholder="휴대폰 번로를 입력해주세요.(-없이)">
+                                            <button type="button" class="sty-btn-black btn-search">휴대폰 인증</button>
+                                        </div>
+                                        <p>※ <span class="sty-color-red">회원 본인명의 휴대폰번호</span>만 등록이 가능합니다.</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <h4><span>이메일</span></h4>
+                                    <div class="contents-box cont-email">
+                                        <input type="text" class="in-email">
+                                    </div>
+                                </li>
+                                <li>
+                                    <h4><span>주소</span></h4>
+                                    <div class="contents-box cont-address">
+                                        <div class="same-box">
+                                            <input type="checkbox" id="in-check-same" class="in-check-same">
+                                            <label class="label-same" for="in-check-same">회원주소 동일</label>
+                                        </div>
+                                        <div class="phon-box">
+                                            <input type="number" class="in-zipcode" placeholder="우편번호">
+                                            <button type="button" class="sty-btn-black">우편번호 찾기</button>
+                                        </div>
+                                        <div>
+                                            <input type="text" class="in-adress" placeholder="상세주소를 입력해주세요.">
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </form>
+                    </div>
+                    <div class="btn-modify-box">
+                        <a href="#none" class="btn-cancel">취소</a>
+                        <a href="#none" class="btn-complete">완료</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+	@@include('../include/_footer.html') 
+</div>
+
+</body>
+</html>

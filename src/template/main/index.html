@@ -1,0 +1,119 @@
+@@include('../include/_head.html', {
+	"page": "main"
+})
+
+<script src="http://design.ebiznetworks.co.kr/lhc/resort_hotel_sell/static/js/main/init.js"></script>
+	
+</head>
+<body class="page-main">
+
+<div class="wrapper">
+	@@include('../include/_header.html')
+
+	<div class="contents">
+        <section class="main-sec">
+            <div class="main-area">
+                <!-- 로그인 영역 -->
+                <div class="main-box login">
+                    <h2 class="con-tit">로그인</h2> 
+
+                    <!-- 190322 로그인 form 내용 변경 -->
+                    <div class="form-area">
+                        <div class="form-box">
+                     
+                            <div class="row">
+                                <label for="name" class="lbl">아이디</label>
+                                <input type="text" id="name" class="in-txt" placeholder="아이디를 입력해주세요.">
+                            </div>
+                            <div class="row">
+                                <label for="companyNum" class="lbl">비밀번호</label>
+                                <input type="password" id="companyNum" class="in-txt" placeholder="비밀번호를 입력해주세요.">
+                            </div>
+                        </div>
+                        
+                        <a href="./index_2.html" class="btn-login">로그인</a>
+                    </div>
+
+                    <a class="btn-sign ic-rArrow btn-open-question">로그인관련 문의하기</a>
+                    
+                </div>
+                <!--//.main-box -->
+            </div>
+            <!--//.main-area -->
+        </section>
+	</div>
+    <!--//.contents--> 
+
+
+    <!-- 문의하기 팝업 -->
+    <div id="pop_login" class="pop-wrap pop-question">
+        <div class="pop-container">
+            <div class="pop-con">
+                <button type="button" class="btn-close-question">
+                    <img src="http://design.ebiznetworks.co.kr/lhc/resort_hotel_sell/img/main/btn_close_pop.png" alt="닫기버튼">
+                </button>
+                <p class="p-0">로그인관련 문의하기</p>
+
+                <div class="table-row">
+                    <table class="table-style">
+                        <colgroup>
+                            <col class="nth-1">
+                            <col class="nth-2">
+                        </colgroup>
+                        <tbody>
+                            <tr>
+                                <th><label for="popName" class="lbl">이름</label></th>
+                                <td>
+                                    <input type="text" id="popName" class="in-txt-2" value="홍길동">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><label for="popPhone" class="lbl">연락처</label></th>
+                                <td>
+                                    <input type="tel" id="popPhone" class="in-txt-2" value="010-0000-0000">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><label for="popMail" class="lbl">이메일</label></th>
+                                <td>
+                                    <input type="text" id="popMail" class="in-txt-2" value="" placeholder="이메일을 입력해주세요.">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><label for="popTxt" class="lbl">내용</label></th>
+                                <td>
+                                    <textarea id="popTxt" class="ta-txt" placeholder="내용을 입력해주세요."></textarea>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="btn-box">
+                    <button type="button" class="btn-send-question">문의하기</button>
+                </div>
+            </div>
+            
+        </div>
+    </div> 
+    <!--//END : 문의하기 팝업 -->
+
+    <script>
+        $(document).ready(function(){
+            //팝업열기
+            $(".btn-open-question").on('click',function(){
+                $("body").addClass('overflow-hidden');
+                $(".pop-question").show();
+            });
+            //팝업닫기
+            $(".btn-close-question").on('click',function(){
+                $('body').removeClass('overflow-hidden');
+                $(".pop-question").hide();
+            });
+        });
+    </script>
+    
+	@@include('../include/_footer.html') 
+</div>
+
+</body>
+</html>

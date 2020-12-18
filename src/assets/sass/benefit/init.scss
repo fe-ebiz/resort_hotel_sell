@@ -1,0 +1,136 @@
+//page-board
+.contents {
+    .container {
+        .con-area{
+
+        }
+    }
+}
+
+.contents .container .con-area{
+    max-width: none;
+    .benefit-area{
+        width: 100%;
+        padding-bottom: 170px;
+        .benefit-contents{
+            max-width: 1000px;
+            margin: 0 auto;
+            .img-box{
+                margin: 0 auto;
+            }
+        }
+        .benefit-intro{
+            // padding: 78px 0;
+            .benefit-contents{
+                max-width: none;
+                padding-top: 85px;
+                padding-bottom: 44px;
+                .member-box{
+                    text-align: center;
+                    color: #555;
+                    font-size: 30px;
+                    letter-spacing: -2.25px;
+                    .span-name{
+                        color: #252525;
+                        font-weight: 500;
+                    }
+                    .span-nim{
+                        color: #252525;
+                        font-weight: 500;
+                        margin-left: 4px;
+                    }
+                }
+                .img-box{
+                    margin-top: 14px;
+                    width: 977px;
+                }
+            }
+        }
+        .benefit-premium{
+            .benefit-contents{
+                max-width: none;
+                .premium-area{
+                    text-align: center;
+                    position: relative;
+                    margin: 0 auto;
+                    width: 1000px;
+                    .ticket-box{
+                        position: absolute;
+                        left: 108px;
+                        top: 442px;
+                        display: flex;
+                        .ticket-title{
+                            background-color: #937345;
+                            width: 190px;
+                            height: 48px;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            span{
+                                color: white;
+                                font-size: 22px;
+                                font-weight: 400;
+                                letter-spacing: -2px;
+                                margin-top: -3px;
+                            }
+                        }
+                        .ticket-num{
+                            background-color: #f7e382;
+                            
+                            
+                            width: 140px;
+                            margin-left: 2px;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            span{
+                                color: #f73535;
+                                letter-spacing: -1px;
+                                font-size: 24px;
+                                font-weight: 500;
+                                margin-top: -3px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .benefit-use{
+
+            padding-top: 87px;
+            padding-bottom: 116px;
+            .title{
+                
+            }
+            .img-box{
+                margin-top: 50px;
+                width: 940px;
+            }
+        }
+        .benefit-guide{
+            .benefit-contents{
+                border-top: 2px solid #353535;
+                .title{
+                    color: #292929;
+                    font-size: 22px;
+                    font-weight: 500;
+                    margin-top: 40px;
+                }
+                .p-txt{
+                    margin-top: 20px;
+                    color: #353535;
+                    font-size: 16px;
+                    font-weight: 400;
+                    line-height: 1.56;
+                    margin-left: -4px;
+                    letter-spacing: -0.8px;
+                    .txt-red{
+                        color: #f73535;
+                    }
+                }
+            }
+            
+        }
+    }
+}

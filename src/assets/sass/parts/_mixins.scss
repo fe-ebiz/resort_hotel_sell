@@ -1,0 +1,662 @@
+@charset "utf-8";
+
+@import "./variables";
+
+// common
+@mixin centerThis($width: 1000px) {
+	position: relative;
+	box-sizing: border-box;
+	width: $width;
+	margin: 0 auto;
+}
+@mixin bx($ps: relative, $type: border-box) {
+	position: $ps;
+	box-sizing: $type;
+}
+@mixin clearfix {
+	&:before, &:after {
+		content: '';
+		display: table;
+        clear: both;
+	}
+	.lt-ie8 & {
+		zoom: 1;
+	}
+}
+// float
+@mixin float($l: left) {
+	position: relative;
+	float: $l;
+}
+// absolute
+@mixin absolute-tl($t : auto, $l : auto, $wd : 0) {
+	position: absolute;
+	top : $t;
+	left : $l;
+    margin-left: -($wd/2);
+}
+
+// btn base
+@mixin btn-com($po : relative, $dis : inline-block, $wd : null, $he : null, $pd : 0, $f-s : 19px, $f-c : $fc-white-1, $bd-w : 0px, $bd-c : none, $bd-r : $bd-r-10, $btn-bg : $bg-gold-1) {
+    position: $po;
+    box-sizing: border-box;
+    display: $dis;
+    width: $wd;
+    height: $he;
+    padding: $pd;
+    font-size: $f-s;
+    text-align: center;
+    line-height: $he;
+    color: $f-c;
+    border: $bd-w solid $bd-c;
+    border-radius: $bd-r;
+    background: $btn-bg;
+}
+//btn more + > span  / btn rm - 
+@mixin btn-more($pm-l : 10px, $len-min : 1px, $len-max : 12px ,$bg : $bg-gray-6) {
+    padding-left: ($pm-l/2);
+    span {
+        position: relative;
+        display: inline-block;
+        margin-right: $pm-l;
+        width: $len-min;
+        height: $len-max;
+        background: $bg-gray-6;
+        &:before {
+            content: '';
+            position: absolute;
+            width: $len-max;
+            height: $len-min;
+            top: (($len-max/2)-1);
+            left: -($len-max/2);
+            background: $bg;
+        }
+    }
+    &.btn-rm {
+        span {
+            background: none;
+        }
+    }
+}
+
+//select base
+@mixin sel-base($bg-c : $bg-gray-2, $bg-s : 28px, $bg-p : -27px){
+    @include bx;
+    text-align: left;
+    background: $bg-c url(http://img.ramadapt.co.kr/owner/board/bg_arrow_b.png) no-repeat; 
+    background-size: $bg-s auto;
+    background-position: right $bg-p; // 이미지 1. 공지사항 2. 나머지
+}
+//select search
+@mixin sel-ser($dis : inline-block, $wd : 88px, $he : 36px, $p-l : 11px, $bd-c : $bc-gray-2, $bg-c : $bg-white-1, $bg-s : 24px, $bg-p : 13px){
+    @include sel-base($bg-c :$bg-c, $bg-s : $bg-s, $bg-p : $bg-p)
+    display: $dis;
+    width: $wd;
+    height: $he;
+    padding-left: $p-l;
+    line-height: $he;
+    border: 1px solid  $bd-c;
+}
+//sel like box / div > button, ul
+@mixin sel-like($wd : auto, $he : 100%, $bg-c : $bg-gray-2, $bg-c2 : $bg-white-1, $bg-s : 28px, $bg-p : -27px){
+    @include bx;
+    width: $wd;
+    height: $he;
+    
+    .btn-sel {
+        @include sel-base($bg-c :$bg-c, $bg-s : $bg-s, $bg-p : $bg-p);
+        width : 100%;
+        height: 100%;
+        padding: 0 19px;
+        border-radius: 3px;
+        border: 2px solid $bg-gray-2;
+        background-color: $bg-gray-2;
+        &:focus {
+            &:focus {
+                //background: $bg-yellow-1;
+                border-color: $bc-gold-1;
+                outline: none;
+            }
+        }
+    }
+    
+    .sel-menu {
+        @include bx($ps: absolute);
+        z-index: 1;
+        display: none;
+        overflow: hidden;
+        overflow-y: scroll;
+        width: 100%;
+        max-height: 210px;
+        border: 1px solid $bg-gray-2;
+        background: $bg-c2;
+        li {
+            a {
+                display: block;
+                padding: 13px 20px;
+                line-height: 1.2;
+                
+                &:hover, &.on {
+                   background: $bg-yellow-1; 
+                }
+            }
+        }
+    }
+}
+
+// bullet-list : before content
+@mixin l-bul($p-l : 14px, $wh-p : 5px, $t : 23px, $l : 0, $b-r : 50%, $bg : $bg-gold-1) {
+    @include bx;
+    padding-left: $p-l;
+    
+    &:before { 
+        content: '';
+        display: block;
+        position: absolute;
+        width: $wh-p;
+        height: $wh-p;
+        top: $t;
+        left: $l;
+        border-radius: $b-r;
+        background: $bg;
+    }
+}
+
+// border : top, bottom
+@mixin b-tb($bt-w : 1px, $bb-w : 1px, $bt-c : $bc-gray-1, $bb-c : $bc-gray-1){
+    border-top: $bt-w solid $bt-c;
+    border-bottom: $bb-w solid $bb-c;
+}
+
+// text gradient : 3 color
+@mixin txt-gradient($basic-bg: null, $str-bg : null, $mid-bg : null, $end-bg : null){
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    background: $basic-bg;
+    background: -webkit-linear-gradient(left, $str-bg, $mid-bg, $end-bg);
+    background: -o-linear-gradient(left, $str-bg, $mid-bg, $end-bg);
+    background: linear-gradient(to right, $str-bg, $mid-bg, $end-bg);
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+// menu : before content
+@mixin con-line($wd : null, $he : null, $t : 0, $l : 0, $bg : null) {
+    &:before {
+        content: '';
+        display: block;
+        position: absolute;
+        width: $wd;
+        height: $he;
+        top: $t;
+        left: $l;
+        margin-top: -($he/2);
+        background: $bg;
+    }
+}
+
+// tab menu
+@mixin tab-base($m-b : 50px, $wd : 220px, $pd : 15px 0, $f-s : 18px, $f-c : $fc-gray-4, $on-f-c : $fc-black-1, $bd-c : $bc-gray-1, $on-bd-c : $bc-black-1){
+    .tab-area {
+        margin-bottom: $m-b;
+        text-align: center;
+        .tab-menu {
+            position: relative;
+            display: inline-block;
+            text-align: center;
+            li {
+                position: relative;
+                float: left;
+                width: $wd;
+                a {
+                    position: relative;
+                    display: block;
+                    padding: $pd;
+                    font-size: $f-s;
+                    line-height: $f-s;
+                    color: $f-c;
+                    border-bottom: 1px solid $bd-c;
+                }
+                &.on {
+                    a {
+                        color: $on-f-c;
+                        border-bottom: 2px solid $on-bd-c;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// table col
+@mixin table-col($f-s : 15px, $l-h : 58px, $bt-w : 2px, $pd : 0 0, $bt-c : $bc-black-1, $bt-b : 1px, $bb-c : $bc-gray-1, $tr-bg : $bg-gray-3){
+    @include bx;
+    width: 100%;
+
+    .table-style {
+        table-layout: fixed;
+        font-size: $f-s;
+        line-height: $l-h;
+        border-top: $bt-w solid $bt-c;
+        border-bottom: $bt-b solid $bb-c;
+
+        %t-style {
+            padding: $pd;
+            text-align: center;
+        }
+
+        thead {
+            tr {
+                th {
+                    @extend %t-style;
+                    font-weight: 500;
+                    background: $tr-bg;
+                }
+            }
+        }
+
+        tbody {
+            tr {
+                th, td {
+                    @extend %t-style;
+                    border-top: 1px solid $bb-c;
+                    word-break: break-all; //keep all 의 경우 td에서 띄어쓰기가 없을경우 텍스트가 잘리지 않는 현상이 있어 수정
+                    a {
+                        display: block;
+                        overflow: hidden; 
+                        text-overflow: ellipsis; 
+                        word-wrap: normal; 
+                        white-space: nowrap;
+                    }
+                    &.t-r {
+                        text-align: right;
+                    }
+                }
+                
+            }            
+            
+        }
+        .table-over{
+            tr{
+                &:hover{
+                    background-color: #fff4f1
+                    ;
+                }
+            }
+        }
+        
+        
+
+        .t-num{
+            color: #555555;
+            font-size: 16px;
+        }
+        .t-name{
+            text-align: left; 
+            padding-left: 12px; 
+            color: #292929;
+            font-size: 18px;
+            font-weight: 500;
+            letter-spacing: -0.9px;
+        }
+        .t-date{
+            color: #555555;
+            font-size: 16px;
+        }
+
+        .t-l {padding-left: 13px; padding-right: 13px; text-align: left;}
+        
+        //보더 추가
+        &.type-2 {
+            thead {
+                tr {
+                    th {
+                        border-left: 1px solid $bb-c;
+                        &:first-child {
+                            border-left: 0;
+                        }
+                    }
+                }
+            }
+
+            tbody {
+                tr {
+                    td {
+                        border-left: 1px solid $bb-c;
+                        &:first-child {
+                            border-left: 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+}
+
+// table row
+@mixin table-row($f-s : 18px, $td-f-s : 16px, $td-h : 38px, $th-pd : 0, $td-pd : 9px 0 9px 17px, $bt-w : 2px, $bt-c : $bc-black-1, $bb-c : $bc-gray-4, $w-th : 145px, $i-wd : 170px, $bg-th : $bg-gray-3){
+    @include bx;
+    width: 100%;
+    
+    .table-style {
+        table-layout: fixed;
+        font-size: $f-s;
+        line-height: 1.3;
+        text-align: left;
+        border-top: $bt-w solid $bt-c;
+        tr {
+            border-bottom: 1px solid $bb-c;
+            th {
+                //@include bx;
+                box-sizing: border-box;
+                width: $w-th;
+                padding: $th-pd;
+                font-weight: 500;
+                background: $bg-th;
+            }
+            
+            td {
+                padding: $td-pd;
+                word-break: keep-all;
+                font-weight: 400;
+                %write-style {
+                    box-sizing: border-box;
+                    font-size: $td-f-s;
+                    font-weight: 500;
+                }
+                .in-txt-2 {
+                    @extend %write-style;
+                    width: $i-wd;
+                    height: $td-h;
+                    line-height: $td-h;
+                }
+                .ta-txt {
+                    @extend %write-style;
+                }
+                .td-txt {
+                    @extend %write-style;
+                }
+            }
+        }
+    }
+}
+
+// pagenation
+@mixin board-num($m-t : 67px, $a-mg : 30px, $wh : 28px, $f-s : 15px, $f-c : $fc-gray-5, $b-w : 1px, $b-c : $bc-gray-3, $on-bg : $bg-black-1){
+    .pagenation {
+        margin-top: $m-t;
+        text-align: center;
+        font-size: 0;
+        a {
+            display: inline-block;
+            width: $wh;
+            height: $wh;
+            font-size: $f-s;
+            line-height: $wh;
+            vertical-align: middle;
+            color: $fc-gray-5;
+            border: $b-w solid $b-c;
+            border-left: 0;
+
+            &.prev + a, &.prev, &.next {
+                border-left: $b-w solid $b-c;
+            }
+
+            &.prev {
+                margin-right: $a-mg;
+            }
+
+            &.next {
+                margin-left: $a-mg;
+            }
+
+            &:hover, &.on {
+                color: $fc-white-1;
+                background: $on-bg;
+            }
+        }
+    }
+}
+
+// form base
+@mixin form-base($r-wd : 100%, $t : 23px, $h : 51px, $l-wd : 140px, $i-wd : 100%) {
+    .row {
+        @include bx;
+        display: table;
+        width: $r-wd;
+        margin-top: 14px;
+        &:first-child {margin-top: 0;}
+        
+        %tag-style {
+            @include bx;
+            display: table-cell;
+            height: $h;
+            font-size: 17px;
+        }
+        
+        .lbl {
+            @extend %tag-style;
+            @include l-bul($t : $t);
+            cursor: default;
+            width: $l-wd;
+            font-weight: 500;
+            vertical-align: top;
+            line-height: $h;
+        }
+        
+        .in-txt {
+            @extend %tag-style;
+            width: $i-wd;
+            font-size: 17px;
+            font-weight: 400;
+            line-height: $h;
+            & + .in-txt {
+                margin-top: 14px;
+            }
+        }
+        
+        //셀렉트박스인척 하는 버튼
+        .btn-sel {
+            height: $h;
+            font-size: 17px;
+        }
+        
+        [class*='-box'] {
+            @extend %tag-style;
+            .lbl {
+                &.lw-1 {
+                    width: 130px;
+                }
+            }
+            .in-txt {
+                display: inline-block;
+                
+                //휴대폰인증
+                &.w-1 {
+                    width: 382px;
+                }
+                //주소 우편번호찾기란
+                &.w-2 {
+                    width: 230px;
+                }
+                //짧은 input
+                &.w-3 {
+                    width: 122px;
+                }
+                
+                &.w-4 {
+                    width: 250px;
+                }
+                
+                &.w-half {
+                    width: 48.8%;
+                }
+                &.w-half + .w-half {
+                    float: right;
+                }
+            }
+            
+            .btn-form {
+                @include btn-com($wd : 140px, $he : $h, $f-s : 17px, $bd-r : $bd-r-0, $btn-bg : $bg-black-1);
+                margin-left: 9px;
+                vertical-align: middle;
+                
+                &.file {
+                    width: 95px;
+                }
+            }
+            
+            //주소박스
+            &.adr-box {
+                .w-half {margin-top: 13px;}
+            }
+            
+            //주민등록 박스
+            &.reg-box {
+                span {
+                    float: left;
+                    display: inline-block;
+                    width: 4%;
+                    line-height: 48px;
+                    text-align: center;
+                }
+                .in-txt {
+                    float: left;
+                    width: 40%;
+                    &.w-third {
+                        width: 55%;
+                    }
+                    
+                }            
+            }
+            
+            //file box
+            &.file-box {
+                .in-txt[type="file"] {
+                    position: absolute;
+                    overflow: hidden;
+                    width: 0px;
+                    height: 0px;
+                    margin: -1px;
+                    padding: 0;
+                    & + .in-txt {
+                        margin-top: 0;
+                    }
+                }
+                    
+                .upload-name {
+                    //회원가입
+                    width: 510px;
+                    
+                    //통장등록
+                    &.wd-2 {
+                        width: 705px;
+                    }
+                }
+            }
+        }
+        
+        .p-row {
+            @include bx;
+            display: table;
+            width: $r-wd;
+        }
+            
+        .p-txt {
+            @include clearfix;
+            padding: 0 0 0 $l-wd; 
+            font-size: 15px; 
+            line-height: 20px; 
+            color: $fc-black-1;
+            .fc-point {
+                margin: 10px 0;
+                color: $fc-red-4;
+            }
+        }
+        
+        //리스트가 두개 들어갈 경우 / 예) 회원가입
+        &.row-2 {
+            .p-row {
+                display: table-cell;
+                width: auto;
+                .s-1 {padding: 0 25px 0 2px; letter-spacing: -1px;}
+                
+            }
+            
+            .p-box {
+                display: table;
+                margin-bottom: 10px;
+            }
+            
+            .p-txt {
+                color: $fc-gray-2;
+            }
+        }
+    }
+}
+
+//check box + 자세히보기
+@mixin chk-box($pd : 0 0 0 24px, $wh : 16px, $l : 0, $r : auto, $b-c : $bc-gray-1, $f-s : 15px, $f-c : #646161){
+    @include bx;
+    overflow: hidden;
+    input[type=checkbox] {
+        //display: none;
+        position: absolute;
+        width: 0;
+        height: 0;
+        margin: -2px;
+    }
+    label {
+        position: relative;
+        padding: $pd;
+        line-height: $wh;
+    }
+    input[type=checkbox] + label:before {
+        content: ''; 
+        position: absolute; 
+        display: block; 
+        width: $wh; 
+        height: $wh; 
+        top: 50%;
+        left: $l; 
+        right: $r; 
+        margin-top: -($wh/2);
+        text-align: center;
+        line-height: $wh; 
+        border: 1px solid $b-c;
+        border-radius: 3px; 
+        background: $bg-white-1;
+    }
+    input[type=checkbox]:checked + label:before {
+        content: '\2714';
+    }
+    
+    a[class*='btn-'] {
+        margin-left: 12px;
+        font-size: $f-s;
+        font-weight: 300;
+        color: $f-c;
+    }
+}
+
+@mixin chk-box-ie($wh : 16px, $b-c : $bc-gray-1, $pd : 0 0 0 24px){
+    input[type=checkbox] {
+        width: $wh; 
+        height: $wh; 
+        top: 50%; 
+        left: 2px; 
+        margin: 0; 
+        margin-top: -($wh/2);
+        border: 1px solid $b-c; 
+        background: $bg-white-1;
+    } 
+    
+    input[type=checkbox] + label {
+        padding: $pd;
+    }
+    
+    input[type=checkbox] + label:before {
+        content: none;
+    }
+}

@@ -1,0 +1,110 @@
+@@include('../include/_head.html', {
+	"page": "board"
+})
+
+<!-- <script src="http://design.ebiznetworks.co.kr/lhc/resort_hotel_sell/static/js/board/init.js"></script> -->
+<script src="../../static/js/board/init.js"></script>
+	
+</head>
+<body class="page-board">
+
+<div class="wrapper">
+	@@include('../include/_header.html')
+
+	<div class="contents">
+        <div class="container">
+            <!-- tab -->
+            <div class="tab-area">
+                <ul class="tab-menu">
+                    <li class="tab-1"><a href="./notice.html">공지사항</a></li>
+                    <li class="tab-2 on"><a href="./faq.html">FAQ</a></li>
+                    <li class="tab-3"><a href="./question.html">문의하기</a></li>
+                </ul>
+            </div>
+
+            <!-- FAQ -->
+            <section id="tabSec-2" class="board-sec faq-sec" style="display: block">
+                <h2 class="con-tit">FAQ</h2> 
+                <!-- sub content -->
+                <div class="con-area">
+                    <div class="search-area">
+                        <div class="search-box">
+                            <select name="" id="" class="sel-search">
+                                <option value="">제목</option>
+                                <option value="">키워드</option>
+                            </select>
+                            <input type="text" value="" class="in-search">
+                            <input type="button" value="검색" class="btn-search">
+                        </div>
+                    </div>
+                    
+                    <div class="table-col">
+                        <table class="table-style">
+                            <colgroup>
+                                <col class="nth-1">
+                                <col class="nth-2">
+                                <col class="nth-3">
+                            </colgroup>
+                            <tbody class="table-over-faq">
+                                <tr>
+                                    <td class="t-num">2</td>
+                                    <td class="t-name"><a href="#none" title="상세보기">확정 수익금 및 이자지원금 관련 업무절차2</a></td>
+                                    <td class="t-icon-arrow">
+                                        <div class="icon-arrow icon-arrow-up">▲</div>
+                                        <div class="icon-arrow icon-arrow-down">▼</div>
+                                    </td>
+                                </tr>
+                                <tr class="answer">
+                                    <td class="ico-answer">
+                                        <img src="http://design.ebiznetworks.co.kr/lhc/resort_hotel_sell/img/board/icon_faq_answer.png" alt="">
+                                    </td>
+                                    <td class="t-txt" colspan="2">
+                                        <p>
+                                            확정 수익금 및 이자지원금 관련 업무절차<br>
+                                            확정 수익금 및 이자지원금 관련 업무절차<br>
+                                            확정 수익금 및 이자지원금 관련 업무절차확정 수익금 및 이자지원금 관련 업무절차
+                                        </p>
+                                   </td>
+                                </tr>
+                                <!-- 1~answer까지 -->
+                                <tr>
+                                    <td class="t-num">1</td>
+                                    <td class="t-name"><a href="#none" title="상세보기">확정 수익금 및 이자지원금 관련 업무절차</a></td>
+                                    <td class="t-icon-arrow">
+                                        <div class="icon-arrow icon-arrow-up">▲</div>
+                                        <div class="icon-arrow icon-arrow-down">▼</div>
+                                    </td>
+                                </tr>
+                                <tr class="answer">
+                                    <td class="ico-answer">
+                                        <img src="http://design.ebiznetworks.co.kr/lhc/resort_hotel_sell/img/board/icon_faq_answer.png" alt="">
+                                    </td>
+                                    <td class="t-txt" colspan="2">
+                                        <p>
+                                            확정 수익금 및 이자지원금 관련 업무절차<br>
+                                            확정 수익금 및 이자지원금 관련 업무절차<br>
+                                            확정 수익금 및 이자지원금 관련 업무절차확정 수익금 및 이자지원금 관련 업무절차
+                                        </p>
+                                   </td>
+                                </tr>
+                                <!--// 1~answer까지 -->
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="pagenation" id="pagenation">
+                        <a class="prev" href="">&lt;</a>
+                        <a class="on" href="">1</a>
+                        <a class="next" href="">&gt;</a>
+                    </div>
+                </div>
+            </section>
+        </div>
+	</div>
+	<!--//.contents-->    
+
+	@@include('../include/_footer.html') 
+</div>
+
+</body>
+</html>
