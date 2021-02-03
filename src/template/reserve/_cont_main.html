@@ -1,0 +1,1439 @@
+<div id="contents" style="border: none;">
+
+
+    <!--main 끝-->
+    <div id="google_notice">
+    </div>
+
+    <!-- <input type="hidden" name="cal_mode" value="list_detail" id="cal_mode"/> -->
+    <div id="reservation_go">                
+        <!--- 달력 박스 ---->
+<div id="new_cal_wrap">
+
+
+</div>
+<input type="hidden" name="tmp_sub_sdate" id="tmp_sub_sdate" value="2021-02-03">
+<input type="hidden" name="tmp_sub_edate" id="tmp_sub_edate" value="2021-02-04"><input type="hidden" id="loading_txt" value="실시간 요금 및 객실">
+<div id="rsv_wrapper" class="rsv_wrapper">
+
+<input type="hidden" name="change_val" id="change_val">
+
+<div class="clr"></div>
+<form name="rsch_form" id="rsch_form" method="post">
+<input type="hidden" name="find_pno" value="Gkp1EWgQ">
+<input type="hidden" name="jehu_channel" value="all">
+<input type="hidden" name="prev_sang" value="">
+<input type="hidden" name="prev_night" value="1" id="prev_night">
+<input type="hidden" name="prev_roomcnt" value="1" id="prev_roomcnt">
+<input type="hidden" name="abr_val" value="">
+<input type="hidden" name="choice_sdate" value="2021-02-03" id="choice_sdate">
+<input type="hidden" name="choice_edate" value="2021-02-04" id="choice_edate">
+<input type="hidden" name="choice_person" id="choice_person">
+
+<input type="hidden" name="sub_sdate" value="2021-02-03" id="sub_sdate">
+<input type="hidden" name="sub_edate" value="2021-02-04" id="sub_edate">
+<input type="hidden" name="cal_mode" id="cal_mode">
+<input type="hidden" name="single_up" id="single_up" value="Y">
+
+<input type="hidden" name="pack_gubun" value="">
+
+
+<!-- 패키지 딜 추가 input -->
+<input type="hidden" name="rp_no" id="rp_no">
+
+</form>
+
+    <!-- 181122 패키지 메뉴 추가 -->
+<div class="package-menu-area">
+    <ul class="package-menu-list clr">
+        <li class="nth-1 on pack_tab_none"><a href="javascript:package_view('');"><span>객실단품</span></a></li>
+                        <li class="nth-2 pack_tab_so"><a href="javascript:package_view('so');"><span>SPECIAL OFFER</span></a></li>
+                    </ul>
+</div>
+
+
+<script type="text/javascript">
+    var pkgBox = $('.package-menu-area .package-menu-list');
+    var pkgBoxLen = pkgBox.find('li').length - pkgBox.find('li').css("display").length;
+
+    pkgBox.find('li a').on('click', function(){
+        //console.log('click')
+        $(this).parents('li').addClass('on').siblings('li').removeClass('on');
+    });
+
+    for( var pkgNum = 0 ; pkgNum < pkgBoxLen ; pkgNum++ ){
+        if( pkgBox.find('li').hasClass('nth-'+(5*pkgNum)) ){
+            //console.log(5*pkgNum)
+            pkgBox.find('li.nth-'+(5*pkgNum)).before('<li class="nth-line"></li>'); 
+        }
+    }
+    function package_view(val) {
+        $("input[name='pack_gubun']").val(val);
+        room.set_load();
+        $.ajax({
+            type	:	"POST",
+            data	:	{"mode":"pack_img", "p_no":val},
+            url		:	"/reservation/state.php",
+            success	:	function(e) {
+                $("#pack_div").html(e);
+            }
+        })
+    }
+</script>
+
+<!---- 객실리스트 나오는 공간 ------>
+<div id="room_result">
+<form name="prev_form" id="prev_form">
+<input type="hidden" name="base_ts" id="base_ts" value="1612278000">
+<input type="hidden" name="prev_hseldate" id="prev_hseldate" value="2021-02-03">
+<input type="hidden" name="prev_nseldate" id="prev_nseldate" value="2021-02-04">
+<input type="hidden" name="prev_night" id="prev_night" value="1">
+<input type="hidden" name="prev_roomcnt" id="prev_roomcnt" value="1">
+
+<input type="hidden" name="prev_person" id="prev_person" value="">
+<input type="hidden" name="prev_person_c" id="prev_person_c" value="">
+</form>
+
+<form name="rform" id="rform" method="post" action="http://seabay.co.kr/reservation/?dd=WxszRixQP1cpEUZ2TnE=&amp;p_no=Gkp1EWgQ">
+<input type="hidden" name="fval_s" id="fval_s" value="">
+<input type="hidden" name="p_no" id="p_no" value="345266">
+<input type="hidden" name="gubun" id="gubun" value="R">
+<input type="hidden" name="res_type2" id="res_type2" value="all">
+<input type="hidden" name="abr_val" id="abr_val" value="">
+
+<input type="hidden" name="rent_option" value="">
+
+<p style="clear:both;margin-top:20px"></p>
+
+
+<!--- 상품 테이블 ---->
+<div class="rsv_top" id="rsv_sang" style="text-align:center;">
+
+<table id="rsv_s_tab">
+<colgroup>
+    <col width="655">
+    <col width="140">
+    <col width="159">
+</colgroup>
+<tbody>
+    <tr class="rsv_s_tabHead">
+        <td style="position:relative"><span style="position:absolute;left:10px">[2021.02.03 (수)]
+            <img src="http://img.ocean2you.co.kr/go/i-cal.jpg" onclick="$('#cal_mode').val('ocean_start');picker.set_pic_2month();" style="cursor:pointer;width:30px;margin-left:5px">
+            </span>상품선택
+        </td>	
+        <td>기준인원/최대인원</td>
+        <td style="position:relative">
+        <!---추가할인 레이어팝업-->
+        <div id="discount_pop" style="display:none;top:270px;z-index:999">
+            <div class="tit">회원 추가할인 안내<a href="javascript:util.basic_l_on('discount_pop')" title="닫기"><img src="//img.go.co.kr/btn_x2.jpg" alt="닫기" style="clear:both; float:right"></a></div>
+            <div class="text">
+                <p><b>1. 적립금 할인</b></p>
+                <p>
+                    <!-- -  회원가입시 바로 현금처럼 사용 가능한 <span>적립금 0원이 지급</span>됩니다.<br/> -->
+                    -  회원가입시 바로 사용 가능한 <span>70,000원 쿠폰팩이 지급</span>됩니다.<br>
+                    - 로그인 후 결제시 <span>결제금액의 w_per%</span>를 적립금으로 돌려드립니다.
+                </p>
+                <p><br><b>2. 쿠폰 할인</b></p>
+                <p>
+                    - <span> 회원에게만 할인쿠폰</span>이 제공됩니다.<br>
+                    - 회원가입 후 다양한 쿠폰 혜택을 누리세요.
+                </p>
+            </div>
+        </div>
+        <!---추가할인 레이어팝업 끝-->
+        가격
+        <div class="max_discount"><a href="javascript:all_pay_banner('show');" style="top: -30px;padding: 0;left: 8px;background-color: transparent;"></a></div>				</td>
+    </tr>
+</tbody>
+</table>
+
+<div id="rsv_s_list_box2">
+<table id="rsv_s_list">
+    <colgroup>
+    <col width="655">
+    <col width="140">
+    <col width="159">
+    </colgroup>
+    <tbody>
+    
+
+
+<!--- 객실명, 인원, 금액 나오는 라인 ---->
+
+<tr id="696940_tr" class="over_tr  " style="cursor:pointer;;background:#f5f5f5" onclick="alert('예약마감된 객실입니다.');">
+<td class="pl15 left ss"><input type="radio" name="sang" value="696940" id="sang_696940" disabled=""> 
+
+<!--- 패키지 말머리 추가 ---->
+    
+슈페리어1인실<span style="font-size:11px">(랜덤배정)</span>  <span class="end_str" style="font-weight:bold;color:#ff0000">[02/03 만실]</span> 		</td>
+<td class="center ss">1인/1인</td>
+<td class="center ss" style="width:159px;position:relative">
+<del class="price_s">350,000원</del><br>		<span class="price">39,900원~</span>
+</td>
+</tr>
+<tr id="696940_detail" style="display:none">
+<td colspan="3">
+
+<div class="select_wrap">
+
+</div>
+
+</td>
+</tr>
+
+
+<!--- 객실명, 인원, 금액 나오는 라인 ---->
+
+<tr id="698374_tr" class="over_tr  " style="cursor:pointer;" onclick="$('#p_no').val('345266');room.show_detail('698374', 'y');">
+<td class="pl15 left ss"><input type="radio" name="sang" value="698374" id="sang_698374"> 
+
+<!--- 패키지 말머리 추가 ---->
+    
+디럭스더블<span style="font-size:11px">(오션뷰)</span>_1인실  		</td>
+<td class="center ss">1인/1인</td>
+<td class="center ss" style="width:159px;position:relative">
+<del class="price_s">390,000원</del><br>		<span class="price">49,900원~</span>
+</td>
+</tr>
+<tr id="698374_detail" style="display:none">
+<td colspan="3">
+
+<div class="select_wrap">
+
+</div>
+
+</td>
+</tr>
+
+
+<!--- 객실명, 인원, 금액 나오는 라인 ---->
+
+<tr id="560321_tr" class="over_tr  " style="cursor:pointer;" onclick="$('#p_no').val('345266');room.show_detail('560321', 'y');">
+<td class="pl15 left ss"><input type="radio" name="sang" value="560321" id="sang_560321"> 
+
+<!--- 패키지 말머리 추가 ---->
+    
+슈페리어더블<span style="font-size:11px">(마운틴뷰)</span>  		</td>
+<td class="center ss">2인/2인</td>
+<td class="center ss" style="width:159px;position:relative">
+<del class="price_s">350,000원</del><br>		<span class="price">54,000원~</span>
+</td>
+</tr>
+<tr id="560321_detail" style="display:none">
+<td colspan="3">
+
+<div class="select_wrap">
+
+</div>
+
+</td>
+</tr>
+
+
+<!--- 객실명, 인원, 금액 나오는 라인 ---->
+
+<tr id="560323_tr" class="over_tr  " style="cursor:pointer;" onclick="$('#p_no').val('345266');room.show_detail('560323', 'y');">
+<td class="pl15 left ss"><input type="radio" name="sang" value="560323" id="sang_560323"> 
+
+<!--- 패키지 말머리 추가 ---->
+    
+디럭스트윈<span style="font-size:11px">(마운틴뷰)</span>  		</td>
+<td class="center ss">2인/2인</td>
+<td class="center ss" style="width:159px;position:relative">
+<del class="price_s">385,000원</del><br>		<span class="price">59,000원~</span>
+</td>
+</tr>
+<tr id="560323_detail" style="display:none">
+<td colspan="3">
+
+<div class="select_wrap">
+
+</div>
+
+</td>
+</tr>
+
+
+<!--- 객실명, 인원, 금액 나오는 라인 ---->
+
+<tr id="560322_tr" class="over_tr  " style="cursor:pointer;" onclick="$('#p_no').val('345266');room.show_detail('560322', 'y');">
+<td class="pl15 left ss"><input type="radio" name="sang" value="560322" id="sang_560322"> 
+
+<!--- 패키지 말머리 추가 ---->
+    
+디럭스더블<span style="font-size:11px">(마운틴뷰)</span>  		</td>
+<td class="center ss">2인/2인</td>
+<td class="center ss" style="width:159px;position:relative">
+<del class="price_s">385,000원</del><br>		<span class="price">59,000원~</span>
+</td>
+</tr>
+<tr id="560322_detail" style="display:none">
+<td colspan="3">
+
+<div class="select_wrap">
+
+</div>
+
+</td>
+</tr>
+
+
+<!--- 객실명, 인원, 금액 나오는 라인 ---->
+
+<tr id="714436_tr" class="over_tr  " style="cursor:pointer;" onclick="$('#p_no').val('345266');room.show_detail('714436', 'y');">
+<td class="pl15 left ss"><input type="radio" name="sang" value="714436" id="sang_714436"> 
+
+<!--- 패키지 말머리 추가 ---->
+    
+디럭스트윈<span style="font-size:11px">(오션뷰)</span>  		</td>
+<td class="center ss">2인/2인</td>
+<td class="center ss" style="width:159px;position:relative">
+<del class="price_s">390,000원</del><br>		<span class="price">69,000원~</span>
+</td>
+</tr>
+<tr id="714436_detail" style="display:none">
+<td colspan="3">
+
+<div class="select_wrap">
+
+</div>
+
+</td>
+</tr>
+
+
+<!--- 객실명, 인원, 금액 나오는 라인 ---->
+
+<tr id="560383_tr" class="over_tr  " style="cursor:pointer;" onclick="$('#p_no').val('345266');room.show_detail('560383', 'y');">
+<td class="pl15 left ss"><input type="radio" name="sang" value="560383" id="sang_560383"> 
+
+<!--- 패키지 말머리 추가 ---->
+    
+디럭스더블<span style="font-size:11px">(오션뷰)</span>  		</td>
+<td class="center ss">2인/2인</td>
+<td class="center ss" style="width:159px;position:relative">
+<del class="price_s">390,000원</del><br>		<span class="price">79,000원~</span>
+</td>
+</tr>
+<tr id="560383_detail" style="display:none">
+<td colspan="3">
+
+<div class="select_wrap">
+
+</div>
+
+</td>
+</tr>
+
+
+<!--- 객실명, 인원, 금액 나오는 라인 ---->
+
+<tr id="560386_tr" class="over_tr  " style="cursor:pointer;" onclick="$('#p_no').val('345266');room.show_detail('560386', 'y');">
+<td class="pl15 left ss"><input type="radio" name="sang" value="560386" id="sang_560386"> 
+
+<!--- 패키지 말머리 추가 ---->
+    
+디럭스패밀리쿼드<span style="font-size:11px">(더블+2층침대)</span>  		</td>
+<td class="center ss">4인/4인</td>
+<td class="center ss" style="width:159px;position:relative">
+<del class="price_s">470,000원</del><br>		<span class="price">99,000원~</span>
+</td>
+</tr>
+<tr id="560386_detail" style="display:none">
+<td colspan="3">
+
+<div class="select_wrap">
+
+</div>
+
+</td>
+</tr>
+
+
+<!--- 객실명, 인원, 금액 나오는 라인 ---->
+
+<tr id="636621_tr" class="over_tr  " style="cursor:pointer;" onclick="$('#p_no').val('345266');room.show_detail('636621', 'y');">
+<td class="pl15 left ss"><input type="radio" name="sang" value="636621" id="sang_636621"> 
+
+<!--- 패키지 말머리 추가 ---->
+    
+디럭스한실<span style="font-size:11px">(마운틴뷰)</span>  		</td>
+<td class="center ss">4인/4인</td>
+<td class="center ss" style="width:159px;position:relative">
+<del class="price_s">470,000원</del><br>		<span class="price">99,000원~</span>
+</td>
+</tr>
+<tr id="636621_detail" style="display:none">
+<td colspan="3">
+
+<div class="select_wrap">
+
+</div>
+
+</td>
+</tr>
+
+
+<!--- 객실명, 인원, 금액 나오는 라인 ---->
+
+<tr id="673307_tr" class="over_tr  " style="cursor:pointer;" onclick="$('#p_no').val('345266');room.show_detail('673307', 'y');">
+<td class="pl15 left ss"><input type="radio" name="sang" value="673307" id="sang_673307"> 
+
+<!--- 패키지 말머리 추가 ---->
+    
+디럭스트윈 펫룸  		</td>
+<td class="center ss">2인/2인</td>
+<td class="center ss" style="width:159px;position:relative">
+<del class="price_s">385,000원</del><br>		<span class="price">109,000원~</span>
+</td>
+</tr>
+<tr id="673307_detail" style="display:none">
+<td colspan="3">
+
+<div class="select_wrap">
+
+</div>
+
+</td>
+</tr>
+
+
+<!--- 객실명, 인원, 금액 나오는 라인 ---->
+
+<tr id="696939_tr" class="over_tr  " style="cursor:pointer;" onclick="$('#p_no').val('345266');room.show_detail('696939', 'y');">
+<td class="pl15 left ss"><input type="radio" name="sang" value="696939" id="sang_696939"> 
+
+<!--- 패키지 말머리 추가 ---->
+    
+디럭스패밀리트윈<span style="font-size:11px">(오션뷰)</span>  		</td>
+<td class="center ss">3인/3인</td>
+<td class="center ss" style="width:159px;position:relative">
+<del class="price_s">450,000원</del><br>		<span class="price">109,000원~</span>
+</td>
+</tr>
+<tr id="696939_detail" style="display:none">
+<td colspan="3">
+
+<div class="select_wrap">
+
+</div>
+
+</td>
+</tr>
+
+
+<!--- 객실명, 인원, 금액 나오는 라인 ---->
+
+<tr id="673308_tr" class="over_tr  " style="cursor:pointer;" onclick="$('#p_no').val('345266');room.show_detail('673308', 'y');">
+<td class="pl15 left ss"><input type="radio" name="sang" value="673308" id="sang_673308"> 
+
+<!--- 패키지 말머리 추가 ---->
+    
+디럭스패밀리쿼드<span style="font-size:11px">(더블+2층침대)</span> 펫룸  		</td>
+<td class="center ss">4인/4인</td>
+<td class="center ss" style="width:159px;position:relative">
+<del class="price_s">440,000원</del><br>		<span class="price">149,000원~</span>
+</td>
+</tr>
+<tr id="673308_detail" style="display:none">
+<td colspan="3">
+
+<div class="select_wrap">
+
+</div>
+
+</td>
+</tr>
+
+
+<!--- 객실명, 인원, 금액 나오는 라인 ---->
+
+<tr id="638433_tr" class="over_tr  " style="cursor:pointer;" onclick="$('#p_no').val('345266');room.show_detail('638433', 'y');">
+<td class="pl15 left ss"><input type="radio" name="sang" value="638433" id="sang_638433"> 
+
+<!--- 패키지 말머리 추가 ---->
+    
+프리미어스위트<span style="font-size:11px">(오션)</span>  		</td>
+<td class="center ss">2인/2인</td>
+<td class="center ss" style="width:159px;position:relative">
+<del class="price_s">520,000원</del><br>		<span class="price">169,000원~</span>
+</td>
+</tr>
+<tr id="638433_detail" style="display:none">
+<td colspan="3">
+
+<div class="select_wrap">
+
+</div>
+
+</td>
+</tr>
+
+
+<!--- 객실명, 인원, 금액 나오는 라인 ---->
+
+<tr id="638436_tr" class="over_tr  " style="cursor:pointer;" onclick="$('#p_no').val('345266');room.show_detail('638436', 'y');">
+<td class="pl15 left ss"><input type="radio" name="sang" value="638436" id="sang_638436"> 
+
+<!--- 패키지 말머리 추가 ---->
+    
+로얄스위트<span style="font-size:11px">(오션)</span>  		</td>
+<td class="center ss">4인/4인</td>
+<td class="center ss" style="width:159px;position:relative">
+<del class="price_s">770,000원</del><br>		<span class="price">199,000원~</span>
+</td>
+</tr>
+<tr id="638436_detail" style="display:none">
+<td colspan="3">
+
+<div class="select_wrap">
+
+</div>
+
+</td>
+</tr>
+
+
+
+<script>
+$(function() {
+
+$("#fold-list").on("click", function() {
+if($("#fold-list").hasClass("on") == true) { 
+    // 펼치기
+    $(".packlist_s").hide();  
+    $("#fold-list").removeClass("on");  
+    $("#packlist_t").html("더보기<span class=\"arrow f-rotate-90\">&gt;</span></span>");
+
+    var cnt = $("#rsv_s_list").find(".tb_on").length;
+    if(cnt > 0) {
+        $("#rsv_s_list tr").removeClass("select");
+        $("#rsv_s_list tr[id$='_detail']").css("display", "none");
+        $("#rsv_s_list tr[id$='_detail'] #cal_box").html("");
+    }
+} else { 
+    // 접기
+    $(".packlist_s").show();  
+    $("#fold-list").addClass("on");  
+    $("#packlist_t").html("접기<span class=\"arrow f-rotate-90\">&lt;</span></span>");
+}
+});
+
+
+$(".two").mouseover(function() {
+var id = $(this).attr("id");
+id = id.split("_");
+
+var full_id = "thumb_gall_"+id[0]+"_"+id[1];
+ $("#"+full_id).css("display", "block");
+});
+$(".two").mouseout(function() {
+ $(".sub_list_img").css("display", "none");
+});
+
+
+$(".one").mouseover(function() {
+var id = $(this).attr("id");
+id = id.split("_tr");
+
+var full_id = "thumb_gall_"+id[0];
+$("#"+full_id).css("display", "block");
+});
+$(".one").mouseout(function() {
+ $(".sub_list_img").css("display", "none");
+});
+
+//시설명 옆에 썸네일 확대
+$(".sub_list_img").click(function() {
+
+var prev_id = $(this).attr("id");
+var id = prev_id.replace("thumb", "room");
+id = id.replace("gall", "layer2");
+
+utils.img_on("#"+id);
+var $liList = $("#"+id+" .swiper_room2 .swiper-slide img");
+var li_arr = $liList.map(function() {
+    return $(this).width();
+});
+
+var max_width = Math.max.apply(Math, li_arr);
+//$("#"+id).css("width", max_width+"px");
+$("#"+id).css("width", "980px");
+$("#"+id).css("top", "100px");
+var b = ($(window).width() - $("#"+id).width()) / 2;
+$("#"+id).css("left", b);
+
+var tmp = 0;
+var swiper_room2 = new Swiper('#'+id+' .swiper_room2', {
+    initialSlide: parseInt(tmp),
+    loop:true,
+    nextButton: '.swiper-button-next',
+    prevButton: '.swiper-button-prev',
+    autoHeight: true,
+    spaceBetween : 0,
+    onSlideChangeStart: function() {
+        $(".swiper_room2 .swiper-wrapper").css("height", "667");
+        
+        var active_id = $(".swiper_room2 .swiper-slide-active").attr("id");
+        var active_img = $("#"+active_id+"_"+id).height();
+        if(active_img < 667) {
+            var hi = (667/2) - parseInt(active_img/2);
+            $("#"+active_id+"_"+id).css("margin", hi+"px auto");
+        }
+
+    },
+    touchEventsTarget: '#'+id+' .swiper_room2'
+});
+});
+
+//객실 상세 선택 리스트 하단 갤러리 
+$(".gall img").click(function() {
+
+var prev_id = $(this).parent().attr("id");
+var id = prev_id.replace("gall", "layer");
+
+utils.img_on("#"+id);
+var $liList = $("#"+id+" .swiper_room .swiper-slide img");
+var li_arr = $liList.map(function() {
+    return $(this).width();
+});
+
+var max_width = Math.max.apply(Math, li_arr);
+//$("#"+id).css("width", max_width+"px");
+$("#"+id).css("width", "980px");
+var b = ($(window).width() - $("#"+id).width()) / 2;
+$("#"+id).css("top", "100px");
+$("#"+id).css("left", b);
+
+var chi_id = $(this).attr("id");
+var id_cur = chi_id.replace("img_", "");
+var swiper_room = new Swiper('#'+id+' .swiper_room', {
+    initialSlide: parseInt(id_cur),
+    loop:true,
+    nextButton: '.swiper-button-next',
+    prevButton: '.swiper-button-prev',
+    autoHeight: true,
+    spaceBetween : 0,
+    onSlideChangeStart: function() {
+        $(".swiper_room .swiper-wrapper").css("height", "667");
+        
+        var active_id = $(".swiper_room .swiper-slide-active").attr("id");
+        var active_img = $("#"+active_id+"_"+id).height();
+        if(active_img < 667) {
+            var hi = (667/2) - parseInt(active_img/2);
+            $("#"+active_id+"_"+id).css("margin", hi+"px auto");
+        }
+    },
+    touchEventsTarget: '#'+id+' .swiper_room'
+});
+});
+});
+
+function pchange(pno, acurl, rs1, rs2) {
+rsv.sclick(rs1,rs2);
+}
+
+function packlist_show() {
+if($("#fold-list").hasClass("on") != true) { 
+$(".packlist_s").show();  
+$("#fold-list").addClass("on");  
+$("#packlist_t").html("접기<span class=\"arrow f-rotate-90\">&lt;</span></span>");
+}
+}
+</script>
+
+
+    </tbody>
+</table>
+</div>
+</div>
+</form>
+
+
+
+</div>
+<div style="padding:25px;font-size:15px;">
+<!--오션투유 속초 버스투어는 매주 토요일 오전 종합운동장에서 출발하여 일요일저녁에 복귀하는 상품입니다.-->
+</div>
+</div>
+
+
+<script type="text/javascript">
+$(function() {
+room.set_load();
+});
+</script>
+
+
+    </div>
+
+
+    <div id="infom_box" class="title">
+        <!----상품소개---->
+        <span class="slogan_icon" id="room_info"><img src="//img.seabay.co.kr/slogan_tit_01.jpg"></span>
+        <div id="info_box1" style="clear:left;">
+
+            <div id="info_box1" style="clear:left;">
+<div class="detail_goods"><br><p class="info_tit2">※&nbsp;2018년&nbsp;4월에&nbsp;오픈한&nbsp;강릉&nbsp;밸류호텔은&nbsp;현재&nbsp;강릉&nbsp;씨베이호텔로&nbsp;명칭이&nbsp;변경되었습니다.<br>
+<br>
+&nbsp;수영장&nbsp;하계&nbsp;운영중단&nbsp;안내<br>
+강릉씨베이호텔&nbsp;패밀리풀/인피니티풀&nbsp;이용이&nbsp;아래와&nbsp;같이&nbsp;운영중단됨을&nbsp;알려드립니다.<br>
+&nbsp;-&nbsp;패밀리풀&nbsp;:&nbsp;2020년09월02일부터&nbsp;운영&nbsp;중단<br>
+&nbsp;-&nbsp;인피니티풀&nbsp;:&nbsp;2020년09월02일부터&nbsp;운영&nbsp;중단<br>
+&nbsp;<br>
+<br>
+&nbsp;저희&nbsp;호텔은&nbsp;코로나&nbsp;감염방지를&nbsp;위하여&nbsp;마스크&nbsp;미착용시&nbsp;출입이&nbsp;제한될&nbsp;수&nbsp;있습니다.<br>
+<br>
+<br>
+&nbsp;강릉씨베이호텔&nbsp;1인객실&nbsp;이용&nbsp;안내사항<br>
+-&nbsp;객실내&nbsp;모든&nbsp;어메니티는&nbsp;1인&nbsp;기준으로&nbsp;비치되어있습니다.<br>
+-&nbsp;해당&nbsp;객실은&nbsp;1인실로&nbsp;1인&nbsp;초과시&nbsp;추가요금이&nbsp;발생됩니다.<br>
+-&nbsp;인원추가비용&nbsp;:&nbsp;30,000원(현장결제)<br>
+<br>
+[&nbsp;강릉씨베이호텔&nbsp;GO&nbsp;GREEN&nbsp;정책&nbsp;]<br>
+강릉씨베이호텔은&nbsp;환경보호를&nbsp;위해&nbsp;고그린&nbsp;정책에&nbsp;동참하고&nbsp;있습니다.<br>
+환경보호의&nbsp;일환으로&nbsp;연박고객님의&nbsp;경우,&nbsp;별도의&nbsp;객실정비를&nbsp;진행하지&nbsp;않습니다.<br>
+필요한&nbsp;물품(수건,&nbsp;생수&nbsp;등)은&nbsp;프론트에서&nbsp;교체&nbsp;제공해&nbsp;드리고&nbsp;있으니&nbsp;이용에&nbsp;참고하시기&nbsp;바랍니다.<br>
+<br>
+[&nbsp;숙소공통사항&nbsp;]<br>
+-&nbsp;최대&nbsp;인원&nbsp;이외에&nbsp;투숙&nbsp;불가<br>
+-&nbsp;무료&nbsp;주차&nbsp;/&nbsp;무료&nbsp;Wi-Fi<br>
+-&nbsp;부대시설&nbsp;:&nbsp;인피니티&nbsp;수영장,&nbsp;일반&nbsp;수영장,&nbsp;레스토랑,&nbsp;BAR,&nbsp;연회장<br>
+-&nbsp;칫솔,&nbsp;치약&nbsp;기준인원에&nbsp;한해&nbsp;무료제공<br>
+-&nbsp;모든&nbsp;추가비용&nbsp;현장결제<br>
+-&nbsp;2층&nbsp;침대는&nbsp;계단,&nbsp;안전&nbsp;기둥&nbsp;등이&nbsp;구성되어&nbsp;있어서&nbsp;키&nbsp;170CM&nbsp;이하,&nbsp;몸무게&nbsp;60KG&nbsp;이하의&nbsp;고객님들만&nbsp;편히&nbsp;이용하실&nbsp;수&nbsp;있습니다.<br>
+<br>
+[&nbsp;애견동반객실&nbsp;]&nbsp;주의사항<br>
+※&nbsp;애견동반은&nbsp;객실명에&nbsp;[펫룸]으로&nbsp;기재된&nbsp;객실만&nbsp;동반이&nbsp;가능합니다.<br>
+1.&nbsp;애견동반객실&nbsp;예약시&nbsp;또는&nbsp;펫룸&nbsp;예약시&nbsp;1마리&nbsp;까지&nbsp;동반&nbsp;투숙이&nbsp;가능하며&nbsp;1마리당&nbsp;10kg으로&nbsp;제한되어있습니다.<br>
+&nbsp;&nbsp;&nbsp;(2마리&nbsp;이상&nbsp;동반&nbsp;희망시&nbsp;1마리당&nbsp;50,000원의&nbsp;추가요금이&nbsp;발생,&nbsp;2마리&nbsp;초과시&nbsp;입실&nbsp;불가)<br>
+2.&nbsp;입실&nbsp;전&nbsp;프론트에&nbsp;알려주시기&nbsp;바랍니다.<br>
+&nbsp;-&nbsp;기본&nbsp;예방접종을&nbsp;하지&nbsp;않은&nbsp;애완견은&nbsp;투숙이&nbsp;불가능합니다.&nbsp;<br>
+&nbsp;-&nbsp;입실&nbsp;시&nbsp;프론트에서&nbsp;애완견&nbsp;관련&nbsp;서약서에&nbsp;동의,&nbsp;서명&nbsp;부탁드립니다.<br>
+&nbsp;&nbsp;&nbsp;(최근&nbsp;3개월이내&nbsp;예방접종을&nbsp;하였음,&nbsp;시설내에서는&nbsp;강아지를&nbsp;안고&nbsp;다님&nbsp;등의&nbsp;서약&nbsp;내용)<br>
+3.&nbsp;이용&nbsp;시&nbsp;또는&nbsp;이용&nbsp;후&nbsp;다음&nbsp;분을&nbsp;위해&nbsp;아래&nbsp;부분은&nbsp;지켜주시기&nbsp;바랍니다.<br>
+&nbsp;-&nbsp;외출&nbsp;후&nbsp;객실&nbsp;입실&nbsp;시&nbsp;애완동물의&nbsp;발을&nbsp;닦아주시기&nbsp;바랍니다.<br>
+&nbsp;-&nbsp;객실&nbsp;이용&nbsp;시&nbsp;배설물은&nbsp;변기에&nbsp;버려주시고&nbsp;패드는&nbsp;위생팩에&nbsp;담아&nbsp;휴지통에&nbsp;버려&nbsp;주시기&nbsp;바랍니다.<br>
+&nbsp;-&nbsp;객실&nbsp;내&nbsp;침구&nbsp;비품&nbsp;등&nbsp;설비&nbsp;등을&nbsp;파손&nbsp;또는&nbsp;심하게&nbsp;오염시키는&nbsp;경우&nbsp;별도&nbsp;수리비&nbsp;등이&nbsp;부과될&nbsp;수&nbsp;있습니다.&nbsp;<br>
+&nbsp;&nbsp;&nbsp;(체크인&nbsp;시&nbsp;,&nbsp;카드&nbsp;오픈&nbsp;또는&nbsp;현금&nbsp;보증&nbsp;요청)<br>
+&nbsp;-&nbsp;안전을&nbsp;위하여&nbsp;호텔&nbsp;주차장,&nbsp;엘리베이터,&nbsp;로비&nbsp;안에서는&nbsp;애완견을&nbsp;꼭&nbsp;안아주시거나&nbsp;하네스를&nbsp;착용&nbsp;해주시기&nbsp;바랍니다.<br>
+<br>
+★레스토랑이&nbsp;2020년1월13일부터&nbsp;내부&nbsp;리뉴얼로&nbsp;운영되지않으며&nbsp;레스토랑&nbsp;이용이&nbsp;불가합니다.★<br>
+</p><br><br><div class="info_box" style="width: 100%;position: relative;left: -30px;border:none;"></div></div>                    <div id="google_row1"></div>
+            <div id="pack_div"></div>
+        </div>
+
+
+        <!--contents_mn테이블 끝-->
+        <!----갤러리---->
+        <span class="slogan_icon"><img src="//img.seabay.co.kr/slogan_tit_02.jpg"></span>
+        <div id="info_box2" class="info_box2">
+            <div class="goods_gallery">
+                <h3>외관 및 내부</h3>
+                <ul>
+                                                <li onclick="img_click('in_img', '1', '345266')" style="cursor:pointer">
+                        <div class="info" style="z-index: 2;">	<span class="txt">수영장</span></div>
+                        <img src="http://file.tournspa.co.kr/tour/img1/1600303782_in1.jpg" alt="수영장" onerror="this.src='//img.go.co.kr/noimg.jpg'">
+                    </li>
+                                                <li onclick="img_click('in_img', '2', '345266')" style="cursor:pointer">
+                        <div class="info" style="z-index: 2;">	<span class="txt">프론트</span></div>
+                        <img src="http://file.tournspa.co.kr/tour/img1/1561096239_in2.jpg" alt="프론트" onerror="this.src='//img.go.co.kr/noimg.jpg'">
+                    </li>
+                                                <li onclick="img_click('in_img', '3', '345266')" style="cursor:pointer">
+                        <div class="info" style="z-index: 2;">	<span class="txt">슈페리어더블</span></div>
+                        <img src="http://file.tournspa.co.kr/tour/img1/1585728377_in3.jpg" alt="슈페리어더블" onerror="this.src='//img.go.co.kr/noimg.jpg'">
+                    </li>
+                                                <li onclick="img_click('in_img', '4', '345266')" style="cursor:pointer">
+                        <div class="info" style="z-index: 2;">	<span class="txt">디럭스더블</span></div>
+                        <img src="http://file.tournspa.co.kr/tour/img1/1585728378_in4.jpg" alt="디럭스더블" onerror="this.src='//img.go.co.kr/noimg.jpg'">
+                    </li>
+                                                <li onclick="img_click('in_img', '5', '345266')" style="cursor:pointer">
+                        <div class="info" style="z-index: 2;">	<span class="txt">디럭스트윈</span></div>
+                        <img src="http://file.tournspa.co.kr/tour/img1/1585728378_in5.jpg" alt="디럭스트윈" onerror="this.src='//img.go.co.kr/noimg.jpg'">
+                    </li>
+                                                <li onclick="img_click('in_img', '6', '345266')" style="cursor:pointer">
+                        <div class="info" style="z-index: 2;">	<span class="txt">디럭스패밀리트윈</span></div>
+                        <img src="http://file.tournspa.co.kr/tour/img1/1585728586_in6.jpg" alt="디럭스패밀리트윈" onerror="this.src='//img.go.co.kr/noimg.jpg'">
+                    </li>
+                                                <li onclick="img_click('in_img', '7', '345266')" style="cursor:pointer">
+                        <div class="info" style="z-index: 2;">	<span class="txt">디럭스패밀리쿼드</span></div>
+                        <img src="http://file.tournspa.co.kr/tour/img1/1585728586_in7.jpg" alt="디럭스패밀리쿼드" onerror="this.src='//img.go.co.kr/noimg.jpg'">
+                    </li>
+                                                <li onclick="img_click('in_img', '8', '345266')" style="cursor:pointer">
+                        <div class="info" style="z-index: 2;">	<span class="txt">로얄스위트</span></div>
+                        <img src="http://file.tournspa.co.kr/tour/img1/1585728378_in8.jpg" alt="로얄스위트" onerror="this.src='//img.go.co.kr/noimg.jpg'">
+                    </li>
+                                                <li onclick="img_click('in_img', '9', '345266')" style="cursor:pointer">
+                        <div class="info" style="z-index: 2;">	<span class="txt">로얄스위트</span></div>
+                        <img src="http://file.tournspa.co.kr/tour/img1/1585728379_in9.jpg" alt="로얄스위트" onerror="this.src='//img.go.co.kr/noimg.jpg'">
+                    </li>
+                                                <li onclick="img_click('in_img', '10', '345266')" style="cursor:pointer">
+                        <div class="info" style="z-index: 2;">	<span class="txt">디럭스한실</span></div>
+                        <img src="http://file.tournspa.co.kr/tour/img1/1585728379_in10.jpg" alt="디럭스한실" onerror="this.src='//img.go.co.kr/noimg.jpg'">
+                    </li>
+                                                <li onclick="img_click('in_img', '11', '345266')" style="cursor:pointer">
+                        <div class="info" style="z-index: 2;">	<span class="txt">프리미어스위트</span></div>
+                        <img src="http://file.tournspa.co.kr/tour/img1/1593749411_in11.jpg" alt="프리미어스위트" onerror="this.src='//img.go.co.kr/noimg.jpg'">
+                    </li>
+                                                <li onclick="img_click('in_img', '12', '345266')" style="cursor:pointer">
+                        <div class="info" style="z-index: 2;">	<span class="txt">프리미어스위트</span></div>
+                        <img src="http://file.tournspa.co.kr/tour/img1/1593749411_in12.jpg" alt="프리미어스위트" onerror="this.src='//img.go.co.kr/noimg.jpg'">
+                    </li>
+                                            </ul>
+            </div>
+
+            <div class="goods_gallery">
+                <h3>객실사진</h3>
+                <ul>
+                                                <li onclick="img_click('out_img', '13', '345266')" style="cursor:pointer">
+                        <div class="info" style="z-index: 2;">	<span class="txt">슈페리어더블(산전망)</span></div>
+                        <img src="http://file.tournspa.co.kr/tour/img1/1561096790_out1.jpg" alt="슈페리어더블(산전망)" onerror="this.src='//img.go.co.kr/noimg.jpg'">
+                    </li>
+                                                <li onclick="img_click('out_img', '14', '345266')" style="cursor:pointer">
+                        <div class="info" style="z-index: 2;">	<span class="txt">디럭스더블(산전망)</span></div>
+                        <img src="http://file.tournspa.co.kr/tour/img1/1561096790_out2.jpg" alt="디럭스더블(산전망)" onerror="this.src='//img.go.co.kr/noimg.jpg'">
+                    </li>
+                                                <li onclick="img_click('out_img', '15', '345266')" style="cursor:pointer">
+                        <div class="info" style="z-index: 2;">	<span class="txt">디럭스한실</span></div>
+                        <img src="http://file.tournspa.co.kr/tour/img1/1564643773_out3.jpg" alt="디럭스한실" onerror="this.src='//img.go.co.kr/noimg.jpg'">
+                    </li>
+                                                <li onclick="img_click('out_img', '16', '345266')" style="cursor:pointer">
+                        <div class="info" style="z-index: 2;">	<span class="txt">디럭스더블(오션뷰)</span></div>
+                        <img src="http://file.tournspa.co.kr/tour/img1/1561096933_out4.jpg" alt="디럭스더블(오션뷰)" onerror="this.src='//img.go.co.kr/noimg.jpg'">
+                    </li>
+                                                <li onclick="img_click('out_img', '17', '345266')" style="cursor:pointer">
+                        <div class="info" style="z-index: 2;">	<span class="txt">디럭스트윈(산전망)</span></div>
+                        <img src="http://file.tournspa.co.kr/tour/img1/1561096933_out5.jpg" alt="디럭스트윈(산전망)" onerror="this.src='//img.go.co.kr/noimg.jpg'">
+                    </li>
+                                                <li onclick="img_click('out_img', '18', '345266')" style="cursor:pointer">
+                        <div class="info" style="z-index: 2;">	<span class="txt">디럭스패밀리트윈(마운틴뷰)</span></div>
+                        <img src="http://file.tournspa.co.kr/tour/img1/1561096933_out6.jpg" alt="디럭스패밀리트윈(마운틴뷰)" onerror="this.src='//img.go.co.kr/noimg.jpg'">
+                    </li>
+                                                <li onclick="img_click('out_img', '19', '345266')" style="cursor:pointer">
+                        <div class="info" style="z-index: 2;">	<span class="txt">디럭스쿼드(랜덤배정)</span></div>
+                        <img src="http://file.tournspa.co.kr/tour/img1/1561096934_out7.jpg" alt="디럭스쿼드(랜덤배정)" onerror="this.src='//img.go.co.kr/noimg.jpg'">
+                    </li>
+                                                <li onclick="img_click('out_img', '20', '345266')" style="cursor:pointer">
+                        <div class="info" style="z-index: 2;">	<span class="txt">프리미어스위스(오션뷰)</span></div>
+                        <img src="http://file.tournspa.co.kr/tour/img1/1593745273_out8.jpg" alt="프리미어스위스(오션뷰)" onerror="this.src='//img.go.co.kr/noimg.jpg'">
+                    </li>
+                                                <li onclick="img_click('out_img', '21', '345266')" style="cursor:pointer">
+                        <div class="info" style="z-index: 2;">	<span class="txt">로얄스위트(오션뷰)</span></div>
+                        <img src="http://file.tournspa.co.kr/tour/img1/1561097013_out11.jpg" alt="로얄스위트(오션뷰)" onerror="this.src='//img.go.co.kr/noimg.jpg'">
+                    </li>
+                                                <li onclick="img_click('out_img', '22', '345266')" style="cursor:pointer">
+                        <div class="info" style="z-index: 2;">	<span class="txt">로얄스위트(오션뷰)</span></div>
+                        <img src="http://file.tournspa.co.kr/tour/img1/1561097013_out12.jpg" alt="로얄스위트(오션뷰)" onerror="this.src='//img.go.co.kr/noimg.jpg'">
+                    </li>
+                                            </ul>
+            </div>
+
+            <div class="goods_gallery">
+                <h3>부대시설 및 주변시설</h3>
+                <ul style="margin-bottom:75px">
+                                            </ul>
+            </div>
+            <div style="width:910px;margin:auto;">
+            <img src="http://file.tournspa.co.kr/dimg/1594090269_1.jpg" alt="상품소개이미지1" width="100%">					</div>
+        </div>
+
+        <!--contents_mn테이블 끝-->
+        <!----오시는길----->
+        <p style="clear:both"></p>
+        <span class="slogan_icon"><img src="//img.seabay.co.kr/slogan_tit_04.jpg"></span>
+        <div id="info_box4">
+            <div class="tour" id="how_come">
+                <span class="tit" style="float:left">
+                    강릉씨베이호텔 오시는길
+                </span>
+                <!--
+            <span style="float:right"><a href="base_doc/search/?dd=XRE1UQFVO0IyHUA=&tno=HE93"><img src="http://img.ocean2you.co.kr/go/btn_map_near.jpg" /></a></span> -->
+                <div id="map_box" style="clear:both">
+                    
+<style>
+.kmap_info {position: absolute;left: 0;bottom: 40px;width: 288px;height: 132px;margin-left: -144px;text-align: left;overflow: hidden;font-size: 12px;font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;line-height: 1.5;}
+.kmap_info * {padding: 0;margin: 0;}
+.kmap_info .kinfo {width: 286px;height: 120px;border-radius: 5px;border-bottom: 2px solid #ccc;border-right: 1px solid #ccc;overflow: hidden;background: #fff;}
+.kmap_info .kinfo:nth-child(1) {border: 0;box-shadow: 0px 1px 2px #888;}
+.kinfo .ktitle {padding: 5px 0 0 10px;height: 30px;background: #eee;border-bottom: 1px solid #ddd;font-size: 15px;font-weight: bold; }
+.kinfo .kclose {position: absolute;top: 10px;right: 10px;color: #888;width: 17px;height: 17px;background: url('http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');}
+.kinfo .kclose:hover {cursor: pointer;}
+.kinfo .kbody {position: relative;overflow: hidden;}
+.kinfo .kdesc {position: relative;margin: 13px 0 0 90px;height: 75px;}
+.kdesc .kellipsis {overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
+.kdesc .kjibun {font-size: 11px;color: #888;margin-top: -2px;}
+.kinfo .kimg {position: absolute; left: 5px;width: 73px;height: 71px; color: #888;overflow: hidden;}
+</style>
+
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5e8abc006ca8409ed8c0ab8a0ae9fce3"></script><script charset="UTF-8" src="http://t1.daumcdn.net/mapjsapi/js/main/4.3.2/kakao.js"></script>
+<div id="mapContainer" style="width: 941px; height: 500px; position: relative; overflow: hidden; background: url(&quot;http://t1.daumcdn.net/mapjsapi/images/bg_tile.png&quot;);"><div style="position: absolute; left: 0px; top: 0px; width: 100%; height: 100%; touch-action: none; cursor: url(&quot;http://i1.daumcdn.net/dmaps/apis/cursor/openhand.cur.ico&quot;) 7 5, url(&quot;http://i1.daumcdn.net/dmaps/apis/cursor/openhand.cur.ico&quot;), default;"><div style="position: absolute;"><div style="position: absolute; z-index: 0;"></div><div style="position: absolute; z-index: 1; left: 0px; top: 0px;"><img src="http://map3.daumcdn.net/map_2d/2012tlq/L5/535/379.png" alt="" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: -150px; top: 356px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="http://map0.daumcdn.net/map_2d/2012tlq/L5/535/380.png" alt="" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 106px; top: 356px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="http://map1.daumcdn.net/map_2d/2012tlq/L5/535/381.png" alt="" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 362px; top: 356px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="http://map2.daumcdn.net/map_2d/2012tlq/L5/535/382.png" alt="" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 618px; top: 356px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="http://map3.daumcdn.net/map_2d/2012tlq/L5/535/383.png" alt="" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 874px; top: 356px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="http://map3.daumcdn.net/map_2d/2012tlq/L5/536/379.png" alt="" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: -150px; top: 100px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="http://map0.daumcdn.net/map_2d/2012tlq/L5/536/380.png" alt="" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 106px; top: 100px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="http://map1.daumcdn.net/map_2d/2012tlq/L5/536/381.png" alt="" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 362px; top: 100px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="http://map2.daumcdn.net/map_2d/2012tlq/L5/536/382.png" alt="" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 618px; top: 100px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="http://map3.daumcdn.net/map_2d/2012tlq/L5/536/383.png" alt="" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 874px; top: 100px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="http://map3.daumcdn.net/map_2d/2012tlq/L5/537/379.png" alt="" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: -150px; top: -156px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="http://map0.daumcdn.net/map_2d/2012tlq/L5/537/380.png" alt="" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 106px; top: -156px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="http://map1.daumcdn.net/map_2d/2012tlq/L5/537/381.png" alt="" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 362px; top: -156px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="http://map2.daumcdn.net/map_2d/2012tlq/L5/537/382.png" alt="" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 618px; top: -156px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="http://map3.daumcdn.net/map_2d/2012tlq/L5/537/383.png" alt="" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 874px; top: -156px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"></div><div style="position: absolute; z-index: 1;"></div><div style="width: 941px; height: 500px; position: absolute; z-index: 1;"></div><div style="position: absolute; z-index: 1;"><svg version="1.1" style="stroke: none; stroke-dashoffset: 0.5; stroke-linejoin: round; fill: none; transform: translateZ(0px); position: absolute; width: 4705px; height: 2500px; left: -1882px; top: -1000px;" viewBox="0 0 4705 2500"><defs></defs></svg></div><div style="position: absolute; z-index: 1; width: 100%; height: 0px; transform: translateZ(0px);"><div style="position: absolute; margin: -39px 0px 0px -14px; z-index: 0; left: 470px; top: 250px;"><img draggable="false" src="http://t1.daumcdn.net/mapjsapi/images/marker.png" alt="" title="" style="min-width: 0px; min-height: 0px; max-width: 99999px; max-height: none; border: 0px; display: block; position: absolute; user-select: none; -webkit-user-drag: none; clip: rect(0px, 29px, 42px, 0px); top: 0px; left: 0px; width: 29px; height: 42px;"><img src="http://i1.daumcdn.net/dmaps/apis/transparent.gif" alt="" draggable="false" usemap="#daum.maps.Marker.Area:1" style="min-width: 0px; min-height: 0px; max-width: 99999px; max-height: none; border: 0px; display: block; position: absolute; user-select: none; -webkit-user-drag: none; width: 29px; height: 42px;"><map id="daum.maps.Marker.Area:1" name="daum.maps.Marker.Area:1"><area href="javascript:void(0)" alt="" shape="poly" coords="14,39,9,27,4,21,1,16,1,10,4,4,11,0,18,0,25,4,28,10,28,16,25,21,20,27" title="" style="-webkit-tap-highlight-color: transparent;"></map></div><div style="position: absolute; z-index: 0; white-space: nowrap; margin: 0px; left: 470px; top: 250px;"><div class="kmap_info"><div class="kinfo"><div class="ktitle"><a href="#none">[호텔] 강릉씨베이호텔</a><div class="kclose" onclick="closeOverlay_default()" title="닫기"></div></div><div class="kbody"><div class="kimg"><img src="http://file.tournspa.co.kr/tour/img3/1600303781_main1.jpg" width="73" height="70"></div><div class="kdesc"><div class="kjibun kellipsis">강원 강릉시 주문진읍 교항리 190-4</div><div class="kjibun kellipsis">판매가<br>39,900원</div></div></div></div></div></div></div></div></div><div style="position: absolute; cursor: default; z-index: 1; margin: 0px 6px; height: 19px; line-height: 14px; left: 0px; bottom: 0px; color: rgb(0, 0, 0);"><div style="color: rgb(0, 0, 0); text-align: center; font-size: 10px; float: left;"><div style="float: left; margin: 2px 3px 0px 4px; height: 6px; transition: width 0.1s ease 0s; border-top: none rgb(0, 0, 0); border-right: 2px solid rgb(0, 0, 0); border-bottom: 2px solid rgb(0, 0, 0); border-left: 2px solid rgb(0, 0, 0); border-image: initial; width: 58px;"></div><div style="float: left; margin: 0px 4px 0px 0px; font-family: AppleSDGothicNeo-Regular, 돋움, dotum, sans-serif; font-weight: bold; color: rgb(0, 0, 0);">250m</div></div><div style="margin: 0px 4px; float: left;"><a target="_blank" href="http://map.kakao.com/" title="Kakao 지도로 보시려면 클릭하세요." style="float: left; width: 32px; height: 10px;"><img src="http://t1.daumcdn.net/mapjsapi/images/m_bi_b.png" alt="Kakao 지도로 이동" style="float: left; width: 32px; height: 10px; border: none;"></a><div style="font: 11px / 11px Arial, Tahoma, Dotum, sans-serif; float: left;"></div></div></div><div style="cursor: auto; position: absolute; z-index: 2; left: 0px; top: 0px;"><div style="width: 32px; border-radius: 3px; box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 2px 0px; position: absolute; left: 906px; top: 3px;"><button draggable="false" title="확대" style="float: left; cursor: pointer; width: 32px; height: 32px; user-select: none; -webkit-user-drag: none; border-top: none; border-right: none; border-bottom: 1px solid rgb(226, 226, 226); border-left: none; border-image: initial; background: url(&quot;http://t1.daumcdn.net/mapjsapi/images/control.png&quot;) -40px 0px / 116px 264px no-repeat rgb(255, 255, 255); border-radius: 3px 3px 0px 0px;"></button><div style="float: left; background: url(&quot;http://t1.daumcdn.net/mapjsapi/images/bg_zoom_control.png&quot;) repeat; padding: 7px 0px; transition: height 0s ease 0s, margin 0.1s ease 0s;"><div style="cursor: pointer; position: relative; background-size: 116px 264px; transition: height 0.1s ease 0s; margin: 2px 0px; display: block; width: 32px; height: 104px;"><div style="position: absolute; width: 4px; height: 100%; background-color: rgb(51, 150, 255); left: 50%; margin: 0px 0px 0px -2px;"><div style="width: 4px; height: 2px; margin-bottom: -2px; bottom: 0px; position: absolute; background: url(&quot;http://t1.daumcdn.net/mapjsapi/images/control.png&quot;) -50px -127px / 116px 264px;"></div><div style="width: 4px; height: 2px; margin-top: -2px; top: 0px; position: absolute; background: url(&quot;http://t1.daumcdn.net/mapjsapi/images/control.png&quot;) -40px -100px / 116px 264px;"></div></div><div style="position: absolute; background-color: rgb(204, 204, 204); transition: height 0.1s ease 0s; left: 50%; margin: 0px 0px 0px -2px; width: 4px; height: 32px;"></div><div style="cursor: row-resize; position: absolute; width: 20px; height: 10px; margin: -4px 0px 0px -10px; background: url(&quot;http://t1.daumcdn.net/mapjsapi/images/control.png&quot;) -40px -80px / 116px 264px; left: 50%; transition: top 0.1s ease 0s; top: 32px;"></div></div></div><button draggable="false" title="축소" style="float: left; cursor: pointer; width: 32px; height: 32px; user-select: none; -webkit-user-drag: none; border-top: 1px solid rgb(226, 226, 226); border-right: none; border-bottom: none; border-left: none; border-image: initial; background: url(&quot;http://t1.daumcdn.net/mapjsapi/images/control.png&quot;) -40px -32px / 116px 264px no-repeat rgb(255, 255, 255); border-radius: 0px 0px 3px 3px; margin: 0px;"></button><div style="display: none; position: absolute; margin: 41px 0px 0px -30px; background-size: 116px 264px; width: 30px; height: 104px;"><div style="position: absolute; width: 29px; height: 15px; margin: -6px 0px 0px; background: url(&quot;http://t1.daumcdn.net/mapjsapi/images/control.png&quot;) 0px -80px / 116px 264px; left: 0px; top: 8px;"></div><div style="position: absolute; width: 29px; height: 15px; margin: -6px 0px 0px; background: url(&quot;http://t1.daumcdn.net/mapjsapi/images/control.png&quot;) 0px -100px / 116px 264px; left: 0px; top: 32px;"></div><div style="position: absolute; width: 29px; height: 15px; margin: -6px 0px 0px; background: url(&quot;http://t1.daumcdn.net/mapjsapi/images/control.png&quot;) 0px -120px / 116px 264px; left: 0px; top: 64px;"></div><div style="position: absolute; width: 29px; height: 15px; margin: -6px 0px 0px; background: url(&quot;http://t1.daumcdn.net/mapjsapi/images/control.png&quot;) 0px -140px / 116px 264px; left: 0px; top: 80px;"></div><div style="position: absolute; width: 29px; height: 15px; margin: -6px 0px 0px; background: url(&quot;http://t1.daumcdn.net/mapjsapi/images/control.png&quot;) 0px -160px / 116px 264px; left: 0px; top: 96px;"></div></div></div></div></div>
+<script>
+var mapContainer = document.getElementById('mapContainer'), // 지도의 중심좌표
+    mapOption = { 
+        center: new daum.maps.LatLng(37.889358,128.825419), // 지도의 중심좌표
+        level: 5 // 지도의 확대 레벨
+    }; 
+
+var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+    
+var marker_default = new daum.maps.Marker({
+    position: new daum.maps.LatLng(37.889358,128.825419), // 마커의 좌표
+    map: map// 마커를 표시할 지도 객체
+});
+
+var content_default = "";
+
+content_default = 
+    "<div class='kmap_info'>"+
+        "<div class='kinfo'>"+
+            "<div class='ktitle'>"+
+                "<a href='#none'>[호텔] 강릉씨베이호텔</a>"+
+                "<div class='kclose' onclick='closeOverlay_default()' title='닫기'></div>"+
+            "</div>"+
+                "<div class='kbody'>"+
+                    "<div class='kimg'>"+
+                    "<img src='http://file.tournspa.co.kr/tour/img3/1600303781_main1.jpg' width='73' height='70'>"+
+                    "</div>"+
+                    "<div class='kdesc'>"+
+                        "<div class='kjibun kellipsis'>강원 강릉시 주문진읍 교항리 190-4</div>"+
+                        "<div class='kjibun kellipsis'>판매가<br/>39,900원</div>"+
+                    "</div>"+
+                "</div>"+
+            "</a>"+
+        "</div>"+
+    "</div>";
+
+var overlay_default = new daum.maps.CustomOverlay({
+    content: content_default,
+    map: map,
+    position: marker_default.getPosition()
+});
+daum.maps.event.addListener(marker_default, 'click', function() {
+    overlay_default.setMap(map);
+});
+function closeOverlay_default() {
+    overlay_default.setMap(null);
+}
+
+
+// 지도에 확대 축소 컨트롤을 생성한다
+var zoomControl = new daum.maps.ZoomControl();
+
+// 지도의 우측에 확대 축소 컨트롤을 추가한다
+map.addControl(zoomControl, daum.maps.ControlPosition.RIGHT);
+</script>
+                </div>
+            </div>
+            <!--tour 끝-->
+            <div id="google_row2"></div>
+        </div>
+
+        <!--contents_mn테이블 끝-->
+        <!----축제/관광지/맛집----->
+        <span class="slogan_icon"><img src="//img.seabay.co.kr/slogan_tit_05.jpg"></span>
+        <div id="info_box5">
+                                <p id="tour_radio" style="text-align:left">
+            <input type="radio" name="tt_select" value="all" id="info_all" checked=""><label for="info_all"> <span id="span_all" class="on info_span">전체보기</span></label>&nbsp;&nbsp;&nbsp;
+            <input type="radio" name="tt_select" value="tour" id="info_tour"><label for="info_tour"> <span id="span_tour" class="info_span">관광지보기</span></label>&nbsp;&nbsp;&nbsp;
+                                </p>
+
+            <table border="0" id="tour_taste">
+                <colgroup>
+                <col width="70">
+                <col width="170">
+                <col width="205">
+                <col width="250">
+                <col width="120">
+                <col width="95">
+                </colgroup>
+                <thead>
+                <tr>
+                    <th height="35">유형</th>
+                    <th>미리보기</th>
+                    <th>명칭</th>
+                    <th>주소</th>
+                    <th>거리/기간</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                    
+            <tr>
+                <td height="110">관광지</td>
+                <td style="text-align:left" class="photo"><a href="javascript:mapinfo_pop('tour', '1000')"><img src="http://file.tournspa.co.kr/info_tour/upload/0.29580000 1291362617"></a></td>
+                <td style="text-align:left"><a href="javascript:mapinfo_pop('tour', '1000')">소돌아들바위</a></td>
+                <td style="text-align:left">강원 강릉시 주문진읍 주문리 </td>
+                <td style="text-align:left">0.9km 이내</td>
+                <td><a href="javascript:mapinfo_pop('tour', '1000')"><img src="//img.go.co.kr/btn_detail.jpg" alt="자세히보기"></a></td>
+            </tr>
+            <tr>
+                <td height="110">관광지</td>
+                <td style="text-align:left" class="photo"><a href="javascript:mapinfo_pop('tour', '999')"><img src="http://file.tournspa.co.kr/info_tour/upload/0.96203200 1291361982"></a></td>
+                <td style="text-align:left"><a href="javascript:mapinfo_pop('tour', '999')">주문진해변</a></td>
+                <td style="text-align:left">강원 강릉시 주문진읍 향호리 </td>
+                <td style="text-align:left">2.5km 이내</td>
+                <td><a href="javascript:mapinfo_pop('tour', '999')"><img src="//img.go.co.kr/btn_detail.jpg" alt="자세히보기"></a></td>
+            </tr>
+            <tr>
+                <td height="110">관광지</td>
+                <td style="text-align:left" class="photo"><a href="javascript:mapinfo_pop('tour', '151')"><img src="http://file.tournspa.co.kr/info_tour/upload/0.31791000 1273290365"></a></td>
+                <td style="text-align:left"><a href="javascript:mapinfo_pop('tour', '151')">휴휴암</a></td>
+                <td style="text-align:left">강원 양양군 현남면 광진리</td>
+                <td style="text-align:left">9.3km 이내</td>
+                <td><a href="javascript:mapinfo_pop('tour', '151')"><img src="//img.go.co.kr/btn_detail.jpg" alt="자세히보기"></a></td>
+            </tr>
+            <tr>
+                <td height="110">관광지</td>
+                <td style="text-align:left" class="photo"><a href="javascript:mapinfo_pop('tour', '994')"><img src="http://file.tournspa.co.kr/info_tour/upload/0.87021000 1291359054"></a></td>
+                <td style="text-align:left"><a href="javascript:mapinfo_pop('tour', '994')">참소리박물관</a></td>
+                <td style="text-align:left">강원 강릉시 저동 </td>
+                <td style="text-align:left">12.6km 이내</td>
+                <td><a href="javascript:mapinfo_pop('tour', '994')"><img src="//img.go.co.kr/btn_detail.jpg" alt="자세히보기"></a></td>
+            </tr>
+            <tr>
+                <td height="110">관광지</td>
+                <td style="text-align:left" class="photo"><a href="javascript:mapinfo_pop('tour', '140')"><img src="http://file.tournspa.co.kr/info_tour/upload/0.85645300 1273284784"></a></td>
+                <td style="text-align:left"><a href="javascript:mapinfo_pop('tour', '140')">경포호</a></td>
+                <td style="text-align:left">강원 강릉시 저동</td>
+                <td style="text-align:left">12.7km 이내</td>
+                <td><a href="javascript:mapinfo_pop('tour', '140')"><img src="//img.go.co.kr/btn_detail.jpg" alt="자세히보기"></a></td>
+            </tr>
+            <tr>
+                <td height="110">관광지</td>
+                <td style="text-align:left" class="photo"><a href="javascript:mapinfo_pop('tour', '162')"><img src="http://file.tournspa.co.kr/info_tour/upload/0.60623400 1272419458"></a></td>
+                <td style="text-align:left"><a href="javascript:mapinfo_pop('tour', '162')">오죽헌</a></td>
+                <td style="text-align:left">강원 강릉시 죽헌동</td>
+                <td style="text-align:left">12.7km 이내</td>
+                <td><a href="javascript:mapinfo_pop('tour', '162')"><img src="//img.go.co.kr/btn_detail.jpg" alt="자세히보기"></a></td>
+            </tr>
+            <tr>
+                <td height="110">관광지</td>
+                <td style="text-align:left" class="photo"><a href="javascript:mapinfo_pop('tour', '997')"><img src="http://file.tournspa.co.kr/info_tour/upload/0.06094700 1291361027"></a></td>
+                <td style="text-align:left"><a href="javascript:mapinfo_pop('tour', '997')">경포도립공원</a></td>
+                <td style="text-align:left">강원 강릉시 운정동 </td>
+                <td style="text-align:left">12.7km 이내</td>
+                <td><a href="javascript:mapinfo_pop('tour', '997')"><img src="//img.go.co.kr/btn_detail.jpg" alt="자세히보기"></a></td>
+            </tr>
+            <tr>
+                <td height="110">관광지</td>
+                <td style="text-align:left" class="photo"><a href="javascript:mapinfo_pop('tour', '993')"><img src="http://file.tournspa.co.kr/info_tour/upload/0.00490100 1291358270"></a></td>
+                <td style="text-align:left"><a href="javascript:mapinfo_pop('tour', '993')">경포워터드림랜드</a></td>
+                <td style="text-align:left">강원 강릉시 강문동 </td>
+                <td style="text-align:left">13.4km 이내</td>
+                <td><a href="javascript:mapinfo_pop('tour', '993')"><img src="//img.go.co.kr/btn_detail.jpg" alt="자세히보기"></a></td>
+            </tr>
+            <tr>
+                <td height="110">관광지</td>
+                <td style="text-align:left" class="photo"><a href="javascript:mapinfo_pop('tour', '1002')"><img src="http://file.tournspa.co.kr/info_tour/upload/0.49780400 1291363917"></a></td>
+                <td style="text-align:left"><a href="javascript:mapinfo_pop('tour', '1002')">소금강</a></td>
+                <td style="text-align:left">강원 강릉시 연곡면 삼산리 </td>
+                <td style="text-align:left">13.5km 이내</td>
+                <td><a href="javascript:mapinfo_pop('tour', '1002')"><img src="//img.go.co.kr/btn_detail.jpg" alt="자세히보기"></a></td>
+            </tr>
+            <tr>
+                <td height="110">관광지</td>
+                <td style="text-align:left" class="photo"><a href="javascript:mapinfo_pop('tour', '996')"><img src="http://file.tournspa.co.kr/info_tour/upload/0.86518400 1291360430"></a></td>
+                <td style="text-align:left"><a href="javascript:mapinfo_pop('tour', '996')">강문해변</a></td>
+                <td style="text-align:left">강원 강릉시 강문동 </td>
+                <td style="text-align:left">13.8km 이내</td>
+                <td><a href="javascript:mapinfo_pop('tour', '996')"><img src="//img.go.co.kr/btn_detail.jpg" alt="자세히보기"></a></td>
+            </tr>
+            <tr>
+                <td height="110">관광지</td>
+                <td style="text-align:left" class="photo"><a href="javascript:mapinfo_pop('tour', '1046')"><img src="http://file.tournspa.co.kr/info_tour/upload/0.90725900 1291625995"></a></td>
+                <td style="text-align:left"><a href="javascript:mapinfo_pop('tour', '1046')">관음사</a></td>
+                <td style="text-align:left">강원 강릉시 금학동 </td>
+                <td style="text-align:left">16.4km 이내</td>
+                <td><a href="javascript:mapinfo_pop('tour', '1046')"><img src="//img.go.co.kr/btn_detail.jpg" alt="자세히보기"></a></td>
+            </tr>
+            <tr>
+                <td height="110">관광지</td>
+                <td style="text-align:left" class="photo"><a href="javascript:mapinfo_pop('tour', '113')"><img src="http://file.tournspa.co.kr/info_tour/upload/0.15009000 1273220157"></a></td>
+                <td style="text-align:left"><a href="javascript:mapinfo_pop('tour', '113')">하조대해수욕장</a></td>
+                <td style="text-align:left">강원 양양군 현북면</td>
+                <td style="text-align:left">17.0km 이내</td>
+                <td><a href="javascript:mapinfo_pop('tour', '113')"><img src="//img.go.co.kr/btn_detail.jpg" alt="자세히보기"></a></td>
+            </tr>
+            <tr>
+                <td height="110">관광지</td>
+                <td style="text-align:left" class="photo"><a href="javascript:mapinfo_pop('tour', '137')"><img src="http://file.tournspa.co.kr/info_tour/upload/0.32385200 1271650436"></a></td>
+                <td style="text-align:left"><a href="javascript:mapinfo_pop('tour', '137')"> 법수치계곡</a></td>
+                <td style="text-align:left">강원 양양군 현북면 법수치리</td>
+                <td style="text-align:left">19.3km 이내</td>
+                <td><a href="javascript:mapinfo_pop('tour', '137')"><img src="//img.go.co.kr/btn_detail.jpg" alt="자세히보기"></a></td>
+            </tr>
+            <tr>
+                <td height="110">맛집</td>
+                <td style="text-align:left" class="photo"><a href="javascript:mapinfo_pop('food', '79')"><img src="http://file.tournspa.co.kr/info_food/upload/0.19377700 1275459766"></a></td>
+                <td style="text-align:left"><a href="javascript:mapinfo_pop('food', '79')">주문진횟집</a></td>
+                <td style="text-align:left">강원 강릉시 주문진읍 교항리 </td>
+                <td style="text-align:left">1.5km 이내</td>
+                <td><a href="javascript:mapinfo_pop('food', '79')"><img src="//img.go.co.kr/btn_detail.jpg" alt="자세히보기"></a></td>
+            </tr>
+            <tr>
+                <td height="110">맛집</td>
+                <td style="text-align:left" class="photo"><a href="javascript:mapinfo_pop('food', '62')"><img src="http://file.tournspa.co.kr/info_food/upload/0.96596300 1275286607"></a></td>
+                <td style="text-align:left"><a href="javascript:mapinfo_pop('food', '62')">하조대막국수</a></td>
+                <td style="text-align:left">강원 양양군 현북면 하광정리 </td>
+                <td style="text-align:left">17.2km 이내</td>
+                <td><a href="javascript:mapinfo_pop('food', '62')"><img src="//img.go.co.kr/btn_detail.jpg" alt="자세히보기"></a></td>
+            </tr>						</tbody>
+            </table>
+        </div>
+
+        <div style="margin-bottom:50px">
+            <div class="info_box">
+                <p class="info_tit">취소/변경 및 환불안내</p>
+                <span class="info_txt">
+                    ※ 취소규정<br>
+                    <style type="text/css">
+                        .refund2_css th {
+                            border: 1px solid #cccccc;
+                            padding: 5px;
+                            font-size: 10px;
+                            text-align: center;
+                        }
+
+                        .refund2_css td {
+                            border: 1px solid #cccccc;
+                            padding: 5px;
+                            font-size: 10px;
+                        }
+                    </style>
+                    <table class="refund2_css" style="width:100%;margin-top:10px;margin-bottom:10px">
+                        <colgroup>
+                            <col width="39%">
+                            <col width="27%">
+                            <col width="24%">
+                        </colgroup>
+                        <tbody>
+                            <tr>
+                                <th style="text-align:center;font-size:12px;background-color:#e4e3e3">구분</th>
+                                <th style="text-align:center;font-size:12px;background-color:#e4e3e3">취소수수료율</th>
+                                <th style="text-align:center;font-size:12px;background-color:#e4e3e3">환불액</th>
+                            </tr>
+
+                            <tr>
+                                <td style="text-align:left;font-size:12px;padding-left:10px">이용일 기준 15일전</td>
+                                <td style="text-align:center;font-size:12px">10%</td>
+                                <td style="text-align:center;font-size:12px">90% 환불</td>
+                            </tr>
+
+                            <tr>
+                                <td style="text-align:left;font-size:12px;padding-left:10px">이용일 기준 14~10일전</td>
+                                <td style="text-align:center;font-size:12px">20%</td>
+                                <td style="text-align:center;font-size:12px">80% 환불</td>
+                            </tr>
+
+                            <tr>
+                                <td style="text-align:left;font-size:12px;padding-left:10px">이용일 기준 9~7일전</td>
+                                <td style="text-align:center;font-size:12px">40%</td>
+                                <td style="text-align:center;font-size:12px">60% 환불</td>
+                            </tr>
+
+                            <tr>
+                                <td style="text-align:left;font-size:12px;padding-left:10px">이용일 기준 6일전</td>
+                                <td style="text-align:center;font-size:12px">70%</td>
+                                <td style="text-align:center;font-size:12px">30% 환불</td>
+                            </tr>
+
+                            <tr>
+                                <td style="text-align:left;font-size:12px;padding-left:10px">이용일 기준 5일전~당일</td>
+                                <td style="text-align:center;font-size:12px">100%</td>
+                                <td style="text-align:center;font-size:12px">0% 환불</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </span>
+            </div>
+        </div>
+
+    </div>
+
+    
+<!--- 이미지 확대 레이어 --->
+<div class="view_img_layer" style="display:none;position:fixed;visibility:visible;margin-left:0;padding-bottom:30px;height:700px;padding-right:45px" id="img_view_layer">		
+<p class="view_title" style="text-align:left">갤러리</p>
+<p class="view_layer_close" onclick="utils.out('#img_view_layer')"><img src="http://img.ocean2you.co.kr/go/btn_close_layer.jpg" alt="닫기"></p>
+<div class="swiper-container img_area" style="width:100%;background:#000000;height:85%">
+<div class="swiper-wrapper" style="width:100%;background:#000000;height:100%;">
+                    <div class="swiper-slide" style="text-align:center;"><img src="http://file.tournspa.co.kr/tour/img1/1600303782_in1.jpg" alt="수영장" style="max-width:1000px;width:auto;height:auto;margin:0 auto;max-height:667px;margin-top:-26px">
+                        <br><p class="view_imgtxt" style="margin-bottom:-26px">수영장</p>
+                        </div>
+                        <div class="swiper-slide" style="text-align:center;"><img src="http://file.tournspa.co.kr/tour/img1/1561096239_in2.jpg" alt="프론트" style="max-width:1000px;width:auto;height:auto;margin:0 auto;max-height:667px;margin-top:-124.5px">
+                        <br><p class="view_imgtxt" style="margin-bottom:-124.5px">프론트</p>
+                        </div>
+                        <div class="swiper-slide" style="text-align:center;"><img src="http://file.tournspa.co.kr/tour/img1/1585728377_in3.jpg" alt="슈페리어더블" style="max-width:1000px;width:auto;height:auto;margin:0 auto;max-height:667px;margin-top:43.5px">
+                        <br><p class="view_imgtxt" style="margin-bottom:43.5px">슈페리어더블</p>
+                        </div>
+                        <div class="swiper-slide" style="text-align:center;"><img src="http://file.tournspa.co.kr/tour/img1/1585728378_in4.jpg" alt="디럭스더블" style="max-width:1000px;width:auto;height:auto;margin:0 auto;max-height:667px;margin-top:43.5px">
+                        <br><p class="view_imgtxt" style="margin-bottom:43.5px">디럭스더블</p>
+                        </div>
+                        <div class="swiper-slide" style="text-align:center;"><img src="http://file.tournspa.co.kr/tour/img1/1585728378_in5.jpg" alt="디럭스트윈" style="max-width:1000px;width:auto;height:auto;margin:0 auto;max-height:667px;margin-top:43.5px">
+                        <br><p class="view_imgtxt" style="margin-bottom:43.5px">디럭스트윈</p>
+                        </div>
+                        <div class="swiper-slide" style="text-align:center;"><img src="http://file.tournspa.co.kr/tour/img1/1585728586_in6.jpg" alt="디럭스패밀리트윈" style="max-width:1000px;width:auto;height:auto;margin:0 auto;max-height:667px;margin-top:44px">
+                        <br><p class="view_imgtxt" style="margin-bottom:44px">디럭스패밀리트윈</p>
+                        </div>
+                        <div class="swiper-slide" style="text-align:center;"><img src="http://file.tournspa.co.kr/tour/img1/1585728586_in7.jpg" alt="디럭스패밀리쿼드" style="max-width:1000px;width:auto;height:auto;margin:0 auto;max-height:667px;margin-top:43.5px">
+                        <br><p class="view_imgtxt" style="margin-bottom:43.5px">디럭스패밀리쿼드</p>
+                        </div>
+                        <div class="swiper-slide" style="text-align:center;"><img src="http://file.tournspa.co.kr/tour/img1/1585728378_in8.jpg" alt="로얄스위트" style="max-width:1000px;width:auto;height:auto;margin:0 auto;max-height:667px;margin-top:43px">
+                        <br><p class="view_imgtxt" style="margin-bottom:43px">로얄스위트</p>
+                        </div>
+                        <div class="swiper-slide" style="text-align:center;"><img src="http://file.tournspa.co.kr/tour/img1/1585728379_in9.jpg" alt="로얄스위트" style="max-width:1000px;width:auto;height:auto;margin:0 auto;max-height:667px;margin-top:45.5px">
+                        <br><p class="view_imgtxt" style="margin-bottom:45.5px">로얄스위트</p>
+                        </div>
+                        <div class="swiper-slide" style="text-align:center;"><img src="http://file.tournspa.co.kr/tour/img1/1585728379_in10.jpg" alt="디럭스한실" style="max-width:1000px;width:auto;height:auto;margin:0 auto;max-height:667px;margin-top:-2.5px">
+                        <br><p class="view_imgtxt" style="margin-bottom:-2.5px">디럭스한실</p>
+                        </div>
+                        <div class="swiper-slide" style="text-align:center;"><img src="http://file.tournspa.co.kr/tour/img1/1593749411_in11.jpg" alt="프리미어스위트" style="max-width:1000px;width:auto;height:auto;margin:0 auto;max-height:667px;margin-top:-235.5px">
+                        <br><p class="view_imgtxt" style="margin-bottom:-235.5px">프리미어스위트</p>
+                        </div>
+                        <div class="swiper-slide" style="text-align:center;"><img src="http://file.tournspa.co.kr/tour/img1/1593749411_in12.jpg" alt="프리미어스위트" style="max-width:1000px;width:auto;height:auto;margin:0 auto;max-height:667px;margin-top:-229px">
+                        <br><p class="view_imgtxt" style="margin-bottom:-229px">프리미어스위트</p>
+                        </div>
+                        <div class="swiper-slide" style="text-align:center;"><img src="http://file.tournspa.co.kr/tour/img2/1593749222_1.jpg" alt="프리미어스위트(오션)" style="max-width:1000px;width:auto;height:auto;margin:0 auto;max-height:667px;margin-top:-235.5px">
+                        <br><p class="view_imgtxt" style="margin-bottom:-235.5px">프리미어스위트(오션)</p>
+                        </div>
+                    
+                <div class="swiper-slide" style="text-align:center;"><img src="http://img.ocean2you.co.kr/go/thum_logo.jpg" alt="" style="max-width:1000px;width:auto;height:auto;margin:0 auto;max-height:667px">
+    </div>
+    
+</div>
+<a class="btn3 prev swiper-button-prev" style="display: block;height:100%;top:22px;background-position:0 50%"></a>
+<a class="btn3 next3 swiper-button-next" style="display: block;height:100%;top:22px;background-position:100% 50%"></a>
+</div>	
+</div>
+
+<!--- 이미지 확대 레이어 히든 --->
+<div class="view_img_layer" style="display:none;position:fixed;visibility:visible;margin-left:0;padding-bottom:30px;height:auto;padding-right:45px" id="img_hidden_layer">		
+<p class="view_title" id="hidden_view_title" style="text-align:left">갤러리</p>
+<p class="view_layer_close" onclick="utils.out('#img_hidden_layer')"><img src="http://img.ocean2you.co.kr/go/btn_close_layer.jpg" alt="닫기"></p>
+<div id="hidden_layer_cont">		<div class="swiper-container_hidden img_area" style="width:100%;background:#000000">
+<div class="swiper-wrapper" style="width:100%;background:#000000">
+                <div class="swiper-slide" style="text-align:center;"><img src="http://file.tournspa.co.kr/tour/img1/1600303782_in1.jpg" alt="수영장" style="max-width:1000px;width:auto;height:auto;margin:0 auto;max-height:667px" onerror="this.src='//img.go.co.kr/noimg.jpg'">	
+                        <br><p class="view_imgtxt">수영장</p>
+                        </div>
+                <div class="swiper-slide" style="text-align:center;"><img src="http://file.tournspa.co.kr/tour/img1/1561096239_in2.jpg" alt="프론트" style="max-width:1000px;width:auto;height:auto;margin:0 auto;max-height:667px" onerror="this.src='//img.go.co.kr/noimg.jpg'">	
+                        <br><p class="view_imgtxt">프론트</p>
+                        </div>
+                <div class="swiper-slide" style="text-align:center;"><img src="http://file.tournspa.co.kr/tour/img1/1585728377_in3.jpg" alt="슈페리어더블" style="max-width:1000px;width:auto;height:auto;margin:0 auto;max-height:667px" onerror="this.src='//img.go.co.kr/noimg.jpg'">	
+                        <br><p class="view_imgtxt">슈페리어더블</p>
+                        </div>
+                <div class="swiper-slide" style="text-align:center;"><img src="http://file.tournspa.co.kr/tour/img1/1585728378_in4.jpg" alt="디럭스더블" style="max-width:1000px;width:auto;height:auto;margin:0 auto;max-height:667px" onerror="this.src='//img.go.co.kr/noimg.jpg'">	
+                        <br><p class="view_imgtxt">디럭스더블</p>
+                        </div>
+                <div class="swiper-slide" style="text-align:center;"><img src="http://file.tournspa.co.kr/tour/img1/1585728378_in5.jpg" alt="디럭스트윈" style="max-width:1000px;width:auto;height:auto;margin:0 auto;max-height:667px" onerror="this.src='//img.go.co.kr/noimg.jpg'">	
+                        <br><p class="view_imgtxt">디럭스트윈</p>
+                        </div>
+                <div class="swiper-slide" style="text-align:center;"><img src="http://file.tournspa.co.kr/tour/img1/1585728586_in6.jpg" alt="디럭스패밀리트윈" style="max-width:1000px;width:auto;height:auto;margin:0 auto;max-height:667px" onerror="this.src='//img.go.co.kr/noimg.jpg'">	
+                        <br><p class="view_imgtxt">디럭스패밀리트윈</p>
+                        </div>
+                <div class="swiper-slide" style="text-align:center;"><img src="http://file.tournspa.co.kr/tour/img1/1585728586_in7.jpg" alt="디럭스패밀리쿼드" style="max-width:1000px;width:auto;height:auto;margin:0 auto;max-height:667px" onerror="this.src='//img.go.co.kr/noimg.jpg'">	
+                        <br><p class="view_imgtxt">디럭스패밀리쿼드</p>
+                        </div>
+                <div class="swiper-slide" style="text-align:center;"><img src="http://file.tournspa.co.kr/tour/img1/1585728378_in8.jpg" alt="로얄스위트" style="max-width:1000px;width:auto;height:auto;margin:0 auto;max-height:667px" onerror="this.src='//img.go.co.kr/noimg.jpg'">	
+                        <br><p class="view_imgtxt">로얄스위트</p>
+                        </div>
+                <div class="swiper-slide" style="text-align:center;"><img src="http://file.tournspa.co.kr/tour/img1/1585728379_in9.jpg" alt="로얄스위트" style="max-width:1000px;width:auto;height:auto;margin:0 auto;max-height:667px" onerror="this.src='//img.go.co.kr/noimg.jpg'">	
+                        <br><p class="view_imgtxt">로얄스위트</p>
+                        </div>
+                <div class="swiper-slide" style="text-align:center;"><img src="http://file.tournspa.co.kr/tour/img1/1585728379_in10.jpg" alt="디럭스한실" style="max-width:1000px;width:auto;height:auto;margin:0 auto;max-height:667px" onerror="this.src='//img.go.co.kr/noimg.jpg'">	
+                        <br><p class="view_imgtxt">디럭스한실</p>
+                        </div>
+                <div class="swiper-slide" style="text-align:center;"><img src="http://file.tournspa.co.kr/tour/img1/1593749411_in11.jpg" alt="프리미어스위트" style="max-width:1000px;width:auto;height:auto;margin:0 auto;max-height:667px" onerror="this.src='//img.go.co.kr/noimg.jpg'">	
+                        <br><p class="view_imgtxt">프리미어스위트</p>
+                        </div>
+                <div class="swiper-slide" style="text-align:center;"><img src="http://file.tournspa.co.kr/tour/img1/1593749411_in12.jpg" alt="프리미어스위트" style="max-width:1000px;width:auto;height:auto;margin:0 auto;max-height:667px" onerror="this.src='//img.go.co.kr/noimg.jpg'">	
+                        <br><p class="view_imgtxt">프리미어스위트</p>
+                        </div>
+                <div class="swiper-slide" style="text-align:center;"><img src="http://file.tournspa.co.kr/tour/img1/1561096790_out1.jpg" alt="슈페리어더블(산전망)" style="max-width:1000px;width:auto;height:auto;margin:0 auto;max-height:667px" onerror="this.src='//img.go.co.kr/noimg.jpg'">	
+                        <br><p class="view_imgtxt">슈페리어더블(산전망)</p>
+                        </div>
+                <div class="swiper-slide" style="text-align:center;"><img src="http://file.tournspa.co.kr/tour/img1/1561096790_out2.jpg" alt="디럭스더블(산전망)" style="max-width:1000px;width:auto;height:auto;margin:0 auto;max-height:667px" onerror="this.src='//img.go.co.kr/noimg.jpg'">	
+                        <br><p class="view_imgtxt">디럭스더블(산전망)</p>
+                        </div>
+                <div class="swiper-slide" style="text-align:center;"><img src="http://file.tournspa.co.kr/tour/img1/1564643773_out3.jpg" alt="디럭스한실" style="max-width:1000px;width:auto;height:auto;margin:0 auto;max-height:667px" onerror="this.src='//img.go.co.kr/noimg.jpg'">	
+                        <br><p class="view_imgtxt">디럭스한실</p>
+                        </div>
+                <div class="swiper-slide" style="text-align:center;"><img src="http://file.tournspa.co.kr/tour/img1/1561096933_out4.jpg" alt="디럭스더블(오션뷰)" style="max-width:1000px;width:auto;height:auto;margin:0 auto;max-height:667px" onerror="this.src='//img.go.co.kr/noimg.jpg'">	
+                        <br><p class="view_imgtxt">디럭스더블(오션뷰)</p>
+                        </div>
+                <div class="swiper-slide" style="text-align:center;"><img src="http://file.tournspa.co.kr/tour/img1/1561096933_out5.jpg" alt="디럭스트윈(산전망)" style="max-width:1000px;width:auto;height:auto;margin:0 auto;max-height:667px" onerror="this.src='//img.go.co.kr/noimg.jpg'">	
+                        <br><p class="view_imgtxt">디럭스트윈(산전망)</p>
+                        </div>
+                <div class="swiper-slide" style="text-align:center;"><img src="http://file.tournspa.co.kr/tour/img1/1561096933_out6.jpg" alt="디럭스패밀리트윈(마운틴뷰)" style="max-width:1000px;width:auto;height:auto;margin:0 auto;max-height:667px" onerror="this.src='//img.go.co.kr/noimg.jpg'">	
+                        <br><p class="view_imgtxt">디럭스패밀리트윈(마운틴뷰)</p>
+                        </div>
+                <div class="swiper-slide" style="text-align:center;"><img src="http://file.tournspa.co.kr/tour/img1/1561096934_out7.jpg" alt="디럭스쿼드(랜덤배정)" style="max-width:1000px;width:auto;height:auto;margin:0 auto;max-height:667px" onerror="this.src='//img.go.co.kr/noimg.jpg'">	
+                        <br><p class="view_imgtxt">디럭스쿼드(랜덤배정)</p>
+                        </div>
+                <div class="swiper-slide" style="text-align:center;"><img src="http://file.tournspa.co.kr/tour/img1/1593745273_out8.jpg" alt="프리미어스위스(오션뷰)" style="max-width:1000px;width:auto;height:auto;margin:0 auto;max-height:667px" onerror="this.src='//img.go.co.kr/noimg.jpg'">	
+                        <br><p class="view_imgtxt">프리미어스위스(오션뷰)</p>
+                        </div>
+                <div class="swiper-slide" style="text-align:center;"><img src="http://file.tournspa.co.kr/tour/img1/1561097013_out11.jpg" alt="로얄스위트(오션뷰)" style="max-width:1000px;width:auto;height:auto;margin:0 auto;max-height:667px" onerror="this.src='//img.go.co.kr/noimg.jpg'">	
+                        <br><p class="view_imgtxt">로얄스위트(오션뷰)</p>
+                        </div>
+                <div class="swiper-slide" style="text-align:center;"><img src="http://file.tournspa.co.kr/tour/img1/1561097013_out12.jpg" alt="로얄스위트(오션뷰)" style="max-width:1000px;width:auto;height:auto;margin:0 auto;max-height:667px" onerror="this.src='//img.go.co.kr/noimg.jpg'">	
+                        <br><p class="view_imgtxt">로얄스위트(오션뷰)</p>
+                        </div>
+        
+</div>
+<a class="btn3 prev swiper-button-prev2" style="display: block;height:100%;top:22px;background-position:0 50%;z-index:9999;cursor:pointer"></a>
+<a class="btn3 next3 swiper-button-next2" style="display: block;height:100%;top:22px;background-position:100% 50%;z-index:9999;cursor:pointer"></a>		
+</div>	
+</div>
+</div>
+<!--- 이미지 확대 레이어 히든 --->
+
+
+<script type="text/javascript">
+$(function() {
+
+base_hidden();
+
+/* 이미지 스크립트 추가 부분 */
+$("#imgview_box").bind("mouseover", function() {
+$('.img_expansion').show(); 
+});
+
+$("#imgview_box").bind("mouseleave", function() {
+$('.img_expansion').hide();
+});
+
+/* 이미지 확대 클릭 시 */
+$(".img_expansion, #img_more").bind("click", function(e) {
+e.preventDefault();
+$(".img_expansion").hide();
+
+utils.img_on("#img_view_layer");
+
+
+var $liList = $("#img_view_layer .swiper-container .swiper-slide img");
+var li_arr = $liList.map(function() {
+    return $(this).width();
+});
+
+//var max_width = Math.max.apply(Math, li_arr);
+var max_width = "1000";
+$("#img_view_layer").css("width", max_width+"px");
+
+var b = ($(window).width() - $("#img_view_layer").width()) / 2;
+$("#img_view_layer").css("left", b);
+
+
+
+if($(this).attr("id") == "img_more" || typeof $(this).attr("id") == "undefined") {
+    var cur_id = 1;
+} else {
+    var cur_id_tp = $("#img_view").attr("class");
+    var cur_id = cur_id_tp.replace("img_navi_", "");
+}
+
+var swiper = new Swiper('.swiper-container', {
+    initialSlide: parseInt(cur_id-1),
+    loop:true,
+    uniqueNavElements: true,
+    nextButton: '.swiper-button-next',
+    prevButton: '.swiper-button-prev',
+    autoHeight: true,
+    spaceBetween : 0,
+    roundLengths : true,
+    uniqueNavElements: true,
+    observer: true,
+    onSlideChangeEnd: function() {
+        //$("#img_view_layer .swiper-wrapper").css("height", $("#img_view_layer .swiper-slide-active img").height()+"px");
+        $("#img_view_layer .swiper-wrapper").css("height", "100%");
+    },
+    onInit: function() {
+        //$("#img_view_layer .swiper-wrapper").css("height", $("#img_view_layer .swiper-slide-active img").height()+"px");
+        $("#img_view_layer .swiper-wrapper").css("height", "100%");
+    }
+});
+
+});
+/* 이미지 스크립트 추가 부분 */
+});
+
+/* 갤러리 클릭 시 */ 
+function img_click(gubun, i, p_no) {
+
+$("#tab_scroll").hide();
+
+$.ajax({
+url : "/reserve/inc/state.php",
+data : "mode=img_click&gubun="+gubun+"&p_no="+p_no,
+type : "post",
+success: function(e) {
+    $("#hidden_layer_cont").html(e);
+
+    utils.img_on("#img_hidden_layer");
+    var $liList = $("#img_hidden_layer .swiper-slide img");
+    var li_arr = $liList.map(function() {
+        return $(this).width();
+    });
+
+    var max_width = Math.max.apply(Math, li_arr);
+    $("#img_hidden_layer").css("width", max_width+"px");
+
+    var b = ($(window).width() - $("#img_hidden_layer").width()) / 2;
+    $("#img_hidden_layer").css("left", b);
+
+    var swiper = new Swiper('.swiper-container_hidden', {
+        initialSlide: parseInt(i-1),
+        loop:true,
+        uniqueNavElements: true,
+        nextButton: '.swiper-button-next2',
+        prevButton: '.swiper-button-prev2',
+        autoHeight: true,
+        spaceBetween : 0,
+        roundLengths : true,
+        uniqueNavElements: true,
+        observer: true,
+        onSlideChangeEnd: function() {
+            //$(".swiper-container_hidden .swiper-wrapper").css("height", $(".swiper-container_hidden .swiper-slide-active img").height()+"px");
+            $(".swiper-container_hidden .swiper-wrapper").css("height", "100%");
+        },
+        onInit: function() {
+            //$(".swiper-container_hidden .swiper-wrapper").css("height", $(".swiper-container_hidden .swiper-slide-active img").height()+"px");
+            $(".swiper-container_hidden .swiper-wrapper").css("height", "100%");
+        }
+    });
+
+}
+});
+}
+
+function base_hidden() {
+// 로딩 시 같이 한번 뿌림 - 오션투유 처음클릭 시 액박뜸
+$.ajax({
+url : "/reserve/inc/state.php",
+data : "mode=img_click&gubun=add_img&p_no=345266",
+type : "post",
+success: function(e) {
+    $("#hidden_layer_cont").html(e);
+}
+});
+}
+
+// esc 눌러도 레이어 닫힘
+$(document).keyup(function(e) {
+if (e.keyCode == 27) { 
+utils.out("#img_hidden_layer");
+utils.out("#img_view_layer");
+}
+});
+
+</script>
+    
+    <script type="text/javascript">
+        function mapinfo_pop(type, p_no) {
+            ww = window.open("//gangneung.go.co.kr/inc/map_info_pop.php?p_no=" + p_no + "&type=" + type, "mappop", "toolbar=no,scrollbars=yes,directories=no,status=no,menubar=no,width=830,height=800,resizable=yes, top=50, left=" + ((screen.width - 450) / 2) + "");
+            ww.focus();
+        }
+    </script>
+
+</div>
+<!-- //#contents -->
+</div>

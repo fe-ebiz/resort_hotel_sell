@@ -69,8 +69,9 @@
                             margin-top: 40px;
                             .title-main{
                                 color: #292929;
-                                font-size: 32px;
+                                font-size: 26px;
                                 line-height: 1;
+                                letter-spacing: -0.6px;
                             }
                             .mark-best{
                                 position: relative;
@@ -82,8 +83,8 @@
                                     background-color: #891eed;
                                     border-radius: 5px;
                                     color: #fff;
-                                    padding: 5px 7px;
-                                    margin-left: 10px;
+                                    padding: 4px 6px;
+                                    margin-left: 8px;
                                     top: -6px;
                                 }
                             }
@@ -97,6 +98,7 @@
                                     font-weight: 300;
                                     letter-spacing: -0.8px;
                                     line-height: 1.2;
+                                    margin-top: 0;
                                 }
                                 .lank-star{
                                     margin-left: 16px;
@@ -261,6 +263,19 @@
             *{
                 outline: none;
             }
+            .slide-ul{
+                
+                .slick-slide{
+                    overflow: hidden;
+                    height: 350px;
+                    img{
+                        height: 100%;
+                    }    
+                }
+                
+            }
+
+
             .slide-control{
                 display: flex;
                 justify-content: space-between;

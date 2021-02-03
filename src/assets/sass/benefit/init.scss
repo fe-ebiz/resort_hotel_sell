@@ -20,33 +20,105 @@
             }
         }
         .benefit-intro{
+            background-color: #f5f5f5;
             // padding: 78px 0;
             .benefit-contents{
+                margin: 0 auto;
                 max-width: none;
                 padding-top: 85px;
                 padding-bottom: 44px;
-                .member-box{
-                    text-align: center;
-                    color: #555;
-                    font-size: 30px;
-                    letter-spacing: -2.25px;
-                    .span-name{
-                        color: #252525;
+                max-width: auto;
+                .member-area{
+                    width: 1026px;
+                    margin: 0 auto;
+                    .title{
+                        text-align: center;
+                        color: #292929;
+                        font-size: 42px;
+                        letter-spacing: -1.05px;
                         font-weight: 500;
                     }
-                    .span-nim{
-                        color: #252525;
-                        font-weight: 500;
-                        margin-left: 4px;
+                    .member-contents{
+                        width: 100%;
+                        display: flex;
+                        justify-content: space-between;
+                        margin-top: 22px;
+                        .img-box{
+                            // margin-top: 14px;
+                            // width: 977px;
+                            margin: 0;
+                        }
+                        .member-info-box{
+                            margin-top: 46px;
+                            .member-box{
+                                p{
+                                    text-align: left;
+                                }
+                                text-align: center;
+                                color: #555;
+                                font-size: 30px;
+                                letter-spacing: -2.25px;
+                                .span-name{
+                                    color: #252525;
+                                    font-weight: 500;
+                                }
+                                .span-nim{
+                                    color: #252525;
+                                    font-weight: 500;
+                                    margin-left: 4px;
+                                }
+                                .txt-box{
+                                    margin-top: 15px;
+                                    color: #232220;
+                                    font-size: 20px;
+                                    letter-spacing: -1.5px;
+                                    line-height: 1.25;
+                                    // font-weight: 300;
+                                    .span-mark{
+                                        color: #00aba5;
+                                        font-weight: 500;
+                                    }
+                                }
+                            }
+                            .ticket-box{
+                                width: 350px;
+                                height: 48px;
+                                margin-top: 33px;
+                                background-color: #fff;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                border: 1px solid #ddd;
+                                &>p{
+                                    font-size: 22px;
+                                    font-weight: 500;
+                                    // letter-spacing: -0.8px;
+                                }
+                                .ticket-name{
+                                    color: #353535;
+                                    letter-spacing: -1.1px;
+                                }
+                                .ticket-num{
+                                    color: #9b1522;
+                                    margin-left: 20px;
+                                    .span-num{
+                                        font-weight: 600;
+                                        letter-spacing: -0.8px;
+                                    }
+                                    .span-use{
+                                        font-size: 17.5px;
+                                        font-weight: 300;
+                                        letter-spacing: -0.8px;
+                                    }
+                                }
+                            }
+                        }
                     }
-                }
-                .img-box{
-                    margin-top: 14px;
-                    width: 977px;
                 }
             }
         }
         .benefit-premium{
+            margin-top: 80px;
             .benefit-contents{
                 max-width: none;
                 .premium-area{
@@ -54,44 +126,69 @@
                     position: relative;
                     margin: 0 auto;
                     width: 1000px;
-                    .ticket-box{
-                        position: absolute;
-                        left: 108px;
-                        top: 442px;
-                        display: flex;
-                        .ticket-title{
-                            background-color: #937345;
-                            width: 190px;
-                            height: 48px;
-                            display: flex;
-                            justify-content: center;
-                            align-items: center;
-                            span{
-                                color: white;
-                                font-size: 22px;
-                                font-weight: 400;
-                                letter-spacing: -2px;
-                                margin-top: -3px;
-                            }
+                    .title-box{
+                        
+                        .title-main{
+                            margin-top: 14px;
+                            color: #202020;
+                            font-size: 45px;
+                            letter-spacing: -2.2px;
+                            font-weight: 500;
                         }
-                        .ticket-num{
-                            background-color: #f7e382;
-                            
-                            
-                            width: 140px;
-                            margin-left: 2px;
-                            display: flex;
-                            justify-content: center;
-                            align-items: center;
-                            span{
-                                color: #f73535;
-                                letter-spacing: -1px;
-                                font-size: 24px;
-                                font-weight: 500;
-                                margin-top: -3px;
+                        .title-sub{
+                            margin: 0 auto;
+                            margin-top: 14px;
+                            width: 224px;
+                            img{
+                                width: 100%;
                             }
                         }
                     }
+                    .premium-table{
+                        margin-top: 40px;
+                        border-top: 2px solid #353535;
+                        border-bottom: 2px solid #bcbcbc;
+                        th, td{
+                            text-align: center;
+                            border-right: 1px solid #bcbcbc;
+                            border-bottom: 1px solid #bcbcbc;
+                            &:last-of-type{
+                                border-right: none;
+                            }
+                            
+                        }
+                        .title-area th{
+                            height: 110px;
+                            p{
+                                font-size: 26px;
+                                letter-spacing: -1.95px;
+                                line-height: 1.25;
+                            }
+                            .title-main{
+                                color: #151212;
+                                font-weight: 500;
+                            }
+                            .title-sub{
+                                color: #ae7f3c;
+                            }
+                        }
+                        .txt-area td{
+                            height: 140px;
+                            color: #353535;
+                            font-size: 18px;
+                            letter-spacing: -0.9px;
+                            line-height: 1.4;
+                        }
+                    }
+
+                   .txt-notice{
+                       margin-top: 28px;
+                       text-align: right;
+                       color: #888;
+                       font-size: 16px;
+                       letter-spacing: -1.2px;
+                       font-weight: 300;
+                   }
                 }
             }
         }
@@ -101,7 +198,10 @@
             padding-top: 87px;
             padding-bottom: 116px;
             .title{
-                
+                color: #261d1d;
+                font-size: 32px;
+                letter-spacing: -2.4px;
+                font-weight: 500;
             }
             .img-box{
                 margin-top: 50px;
